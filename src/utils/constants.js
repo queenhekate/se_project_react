@@ -72,6 +72,15 @@ export const weatherOptions = [
   },
 ];
 
+export const defaultWeatherOptions = {
+  day: {
+    url: new URL("../images/Day/Default.png", import.meta.url).href,
+  },
+  night: {
+    url: new URL("../images/Night/Default.png", import.meta.url).href,
+  },
+};
+
 export const defaultClothingItems = [
   {
     _id: 0,
