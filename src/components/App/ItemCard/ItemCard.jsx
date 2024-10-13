@@ -1,6 +1,6 @@
 import "./ItemCard.css";
 
-function ItemCard({ item }) {
+function ItemCard({ item, onCardClick }) {
   return (
     <li className="card">
       <h2 className="card__name">{item.name}</h2>
