@@ -27,20 +27,31 @@ To get started with the app, follow these steps:
    ```bash
    git clone https://github.com/queenhekate/se_project_react.git
    ```
+<<<<<<< HEAD
 2. Navigate into the project directory:
 
+=======
+   
+2. Navigate into the project directory:
+>>>>>>> 6d7df203f6e80c87276f439ba5f7255eb2c2242f
    ```bash
    cd se_project_react
    ```
 
 3. Install the dependencies:
+<<<<<<< HEAD
 
+=======
+>>>>>>> 6d7df203f6e80c87276f439ba5f7255eb2c2242f
    ```bash
    npm install
    ```
 
 4. Start the development server:
+<<<<<<< HEAD
 
+=======
+>>>>>>> 6d7df203f6e80c87276f439ba5f7255eb2c2242f
    ```bash
    npm start
    ```
