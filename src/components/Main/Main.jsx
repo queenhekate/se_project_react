@@ -7,8 +7,8 @@ import { CurrentTemperatureUnitContext } from "../../context/CurrentTemperatureU
 
 function Main({ weatherData, handleCardClick }) {
   const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
+  const temp = weatherData?.temperature?.[currentTemperatureUnit] || 999;
   const getWeatherType = useMemo(() => {
-    const temp = weatherData?.temperature?.[currentTemperatureUnit] || 999;
     if (weatherData >= 86) {
       return "hot";
     } else if (weatherData >= 66) {
@@ -20,10 +20,10 @@ function Main({ weatherData, handleCardClick }) {
 
   return (
     <main>
-      <WeatherCard weatherData={weatherData} />
+      <WeatherCard weatherData={temp} />
       <section className="cards">
         <p className="cards__text">
-          Today is {weatherData.temp.F}&deg;F / You may want to wear:
+          Today is {temp}&deg;F / You may want to wear:
         </p>
         <ul className="cards__list">
           {defaultClothingItems
