@@ -1,9 +1,9 @@
 import WeatherCard from "../WeatherCard/WeatherCard";
 import ItemCard from "../ItemCard/ItemCard";
 import "./Main.css";
-import { defaultClothingItems } from "../../../utils/constants";
+import { defaultClothingItems } from "../../utils/constants";
 import { useMemo, useContext } from "react";
-import { CurrentTemperatureUnitContext } from "../../../context/CurrentTemperatureUnitContext";
+import { CurrentTemperatureUnitContext } from "../../context/CurrentTemperatureUnitContext";
 
 function Main({ weatherData, handleCardClick }) {
   const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);

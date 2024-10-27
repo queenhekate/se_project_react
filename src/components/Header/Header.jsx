@@ -1,6 +1,6 @@
 import "./Header.css";
-import logo from "../../../images/logo.svg";
-import avatar from "../../../images/avatar.png";
+import logo from "../../images/logo.svg";
+import avatar from "../../images/avatar.png";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 
 function Header({ handleAddClick, weatherData }) {

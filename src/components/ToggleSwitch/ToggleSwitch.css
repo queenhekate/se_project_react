@@ -1,8 +1,3 @@
-@font-face {
-  src: url("../assets/fonts/CabinetGrotesk-Bold.woff") format("woff");
-  font-family: "CabinetGrotesk";
-}
-
 .switch {
   display: flex;
   position: relative;
@@ -21,7 +16,7 @@
   width: 30px;
   height: 28px;
   background-color: black;
-  color: white;
+  color: #f3f3f3;
   text-align: center;
   cursor: pointer;
   position: absolute;
@@ -38,21 +33,20 @@
 }
 
 .switch__active {
-  color: white;
+  color: #f3f3f3;
   font-size: 16px;
-  font-family: "Cabinet Grotesk", sans-serif;
 }
 
 .switch__temp-F {
   position: absolute;
   top: -13px;
   left: 37px;
-  color: white;
+  color: #f3f3f3;
 }
 
 .switch__temp-C {
   position: absolute;
   top: -13px;
   left: 9px;
-  color: white;
+  color: #f3f3f3;
 }

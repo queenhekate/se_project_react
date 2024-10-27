@@ -5,7 +5,6 @@
 }
 
 .footer__text {
-  font-family: "CabinetGrotesk-Medium", sans-serif;
   font-size: 16px;
   font-weight: 500;
   line-height: 20px;
@@ -13,7 +12,6 @@
 }
 
 .footer__date {
-  font-family: "CabinetGrotesk-Medium", sans-serif;
   font-size: 16px;
   font-weight: 500;
   line-height: 20px;
