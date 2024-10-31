@@ -1,0 +1,14 @@
+.profile {
+  display: flex;
+  gap: 116px;
+  font-family: "Cabinet Grotesk", sans-serif;
+}
+
+.profile__sidebar {
+  display: flex;
+}
+
+.profile__clothing-section {
+  display: flex;
+  gap: 20px;
+}

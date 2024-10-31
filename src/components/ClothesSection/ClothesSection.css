@@ -1,0 +1,19 @@
+.clothesSection {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 24.8px;
+  text-align: left;
+}
+
+.clothesSection__container {
+  display: flex;
+  gap: 20px;
+}
+
+.clothesSection__label {
+}
+
+.clothesSection__button {
+  border: none;
+  color: rgba(0, 0, 0, 0.6);
+}

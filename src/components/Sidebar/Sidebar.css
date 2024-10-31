@@ -1,0 +1,15 @@
+.sidebar {
+  width: 229px;
+  height: 56px;
+  display: flex;
+  gap: 16px;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 24.8px;
+  text-align: left;
+}
+
+.sidebar__avatar {
+  width: 56px;
+  height: 56px;
+}
