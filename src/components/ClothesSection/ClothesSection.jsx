@@ -12,11 +12,7 @@ function ClothesSection({ handleCardClick }) {
       <ul className="clothesSection__cards">
         {defaultClothingItems.map((item) => {
           return (
-            <ItemCard
-              key={item._id}
-              item={item}
-              handleCardClick={handleCardClick}
-            />
+            <ItemCard key={item._id} item={item} onClick={handleCardClick} />
           );
         })}
       </ul>

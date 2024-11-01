@@ -36,7 +36,7 @@ function Main({ weatherData, handleCardClick }) {
                 <ItemCard
                   key={item._id}
                   item={item}
-                  handleCardClick={handleCardClick}
+                  onClick={handleCardClick}
                 />
               );
             })}
