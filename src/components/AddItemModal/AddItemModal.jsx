@@ -1,17 +1,24 @@
 import React, { useState } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
-const AddItemModal = ({ closeActiveModal, onAddItem, isOpen }) => {
+
+const AddItemModal = ({ activeModal, onClose, isOpen, onSubmit }) => {
   const [name, setName] = useState("");
   const handleNameChange = (e) => {
-    console.log(e.target.value);
     setName(e.target.value);
   };
 
-  const [link, setUrl] = useState("");
+  const resetForm = () => {
+    setName("");
+    setUrl("");
+    setType("");
+  };
+
+  const [imageUrl, setUrl] = useState("");
   const handleUrlChange = (e) => {
     console.log(e.target.value);
     setUrl(e.target.value);
   };
+
   const [type, setType] = useState("");
   const handleTypeChange = (e) => {
     console.log(e.target.value);
@@ -20,15 +27,17 @@ const AddItemModal = ({ closeActiveModal, onAddItem, isOpen }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onAddItem({ name, link, type });
+    const newItem = { name, imageUrl, type };
+    onSubmit(newItem, resetForm);
   };
+
   return (
     <ModalWithForm
       title="New Garment"
       buttonText="Add garment"
-      // activeModal={activeModal}
+      activeModal={activeModal}
       isOpen={isOpen}
-      onClose={closeActiveModal}
+      onClose={onClose}
       onSubmit={handleSubmit}
     >
       <label htmlFor="name" className="modal__label">
@@ -42,6 +51,7 @@ const AddItemModal = ({ closeActiveModal, onAddItem, isOpen }) => {
           maxLength="30"
           value={name}
           onChange={handleNameChange}
+          required
         />
       </label>
       <label htmlFor="imageURL" className="modal__label">
@@ -53,8 +63,9 @@ const AddItemModal = ({ closeActiveModal, onAddItem, isOpen }) => {
           placeholder="Image URL"
           minLength="1"
           maxLength="30"
-          value={link}
+          value={imageUrl}
           onChange={handleUrlChange}
+          required
         />
       </label>
       <fieldset className="modal__radio-buttons">
@@ -67,8 +78,9 @@ const AddItemModal = ({ closeActiveModal, onAddItem, isOpen }) => {
             className="modal__radio-input"
             value="hot"
             onChange={handleTypeChange}
+            required
           />
-          &nbsp;Hot
+          <span>&nbsp;Hot</span>
         </label>
         <label htmlFor="warm" className="modal__label modal__label_type_radio">
           <input
@@ -78,8 +90,9 @@ const AddItemModal = ({ closeActiveModal, onAddItem, isOpen }) => {
             className="modal__radio-input"
             value="warm"
             onChange={handleTypeChange}
+            required
           />
-          &nbsp;Warm
+          <span>&nbsp;Warm</span>
         </label>
         <label htmlFor="cold" className="modal__label modal__label_type_radio">
           <input
@@ -89,8 +102,9 @@ const AddItemModal = ({ closeActiveModal, onAddItem, isOpen }) => {
             className="modal__radio-input"
             value="cold"
             onChange={handleTypeChange}
+            required
           />
-          &nbsp;Cold
+          <span>&nbsp;Cold</span>
         </label>
       </fieldset>
     </ModalWithForm>

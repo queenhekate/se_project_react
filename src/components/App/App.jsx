@@ -10,7 +10,7 @@ import Footer from "../Footer/Footer";
 import { CurrentTemperatureUnitContext } from "../../context/CurrentTemperatureUnitContext";
 import AddItemModal from "../AddItemModal/AddItemModal";
 import Profile from "../Profile/Profile";
-import { getItems } from "../../utils/api";
+import { getItems, addItem } from "../../utils/api";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -33,10 +33,6 @@ function App() {
   const handleCardClick = (card) => {
     setActiveModal("preview");
     setSelectedCard(card);
-  };
-
-  const onAddItem = (values) => {
-    console.log(values);
   };
 
   const handleToggleSwitchChange = () => {
@@ -63,6 +59,16 @@ function App() {
       .catch(console.error);
   }, []);
 
+  function handleAddItemSubmit(item, resetForm) {
+    return addItem(item) // Ensure this function returns a promise
+      .then((createdItem) => {
+        setClothingItems((prevItems) => [createdItem, ...prevItems]);
+        resetForm();
+        closeActiveModal();
+      })
+      .catch(console.error);
+  }
+
   return (
     <div className="page">
       <CurrentTemperatureUnitContext.Provider
@@ -87,6 +93,7 @@ function App() {
               path="/profile"
               element={
                 <Profile
+                  onAddItem={handleAddItemSubmit}
                   handleCardClick={handleCardClick}
                   clothingItems={clothingItems}
                 />
@@ -96,9 +103,10 @@ function App() {
           <Footer />
         </div>
         <AddItemModal
-          handleCloseModal={closeActiveModal}
+          onClose={closeActiveModal}
           isOpen={activeModal === "add-garment"}
-          onAddItem={onAddItem}
+          onAddItem={handleAddItemSubmit}
+          onSubmit={handleAddItemSubmit}
         />
         <ItemModal
           activeModal={activeModal}

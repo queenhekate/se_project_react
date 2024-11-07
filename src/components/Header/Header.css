@@ -24,6 +24,7 @@
 
 .header__logo {
   margin-right: 24px;
+  cursor: pointer;
 }
 
 .header__date-and-location {
@@ -40,6 +41,7 @@
   font-size: 20px;
   font-weight: 700;
   line-height: 24px;
+  cursor: pointer;
 }
 
 .header__user-container {
@@ -58,4 +60,5 @@
 .header__link {
   text-decoration: none;
   color: black;
+  cursor: pointer;
 }

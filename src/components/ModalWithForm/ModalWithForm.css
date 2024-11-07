@@ -30,6 +30,7 @@
   position: absolute;
   top: 20px;
   right: 28px;
+  cursor: pointer;
 }
 
 .modal__content {
@@ -84,6 +85,14 @@
   gap: 8px;
 }
 
+.input[type="radio"]:span {
+  font: rgba(0, 0, 0, 0.5);
+}
+
+.input[type="radio"]:checked + span {
+  font: rgba(0, 0, 0, 1);
+}
+
 .modal__legend {
   font-weight: 700;
   line-height: 20px;
@@ -103,4 +112,9 @@
   width: 343px;
   height: 44px;
   border-radius: 4px;
+  cursor: pointer;
+}
+
+.modal__submit_disabled {
+  opacity: 0.5;
 }
