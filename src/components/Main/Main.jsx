@@ -1,11 +1,11 @@
 import WeatherCard from "../WeatherCard/WeatherCard";
 import ItemCard from "../ItemCard/ItemCard";
 import "./Main.css";
-import { defaultClothingItems } from "../../utils/constants";
+//import { defaultClothingItems } from "../../utils/constants";
 import { useMemo, useContext } from "react";
 import { CurrentTemperatureUnitContext } from "../../context/CurrentTemperatureUnitContext";
 
-function Main({ weatherData, handleCardClick }) {
+function Main({ weatherData, handleCardClick, clothingItems }) {
   const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
   const getWeatherType = useMemo(() => {
     if (weatherData[currentTemperatureUnit] >= 86) {
@@ -27,7 +27,7 @@ function Main({ weatherData, handleCardClick }) {
         </p>
 
         <ul className="cards__list">
-          {defaultClothingItems
+          {clothingItems
             .filter((item) => {
               return item.weather === weatherData.type;
             })
