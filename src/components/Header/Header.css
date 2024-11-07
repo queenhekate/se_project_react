@@ -8,6 +8,10 @@
   justify-content: space-evenly;
 }
 
+.header__container {
+  display: flex;
+}
+
 .header__grid {
   display: grid;
   flex: 1; /*Allow the grid container to grow and fill available space */
@@ -49,4 +53,9 @@
   font-size: 20px;
   font-weight: 700;
   line-height: 24px;
+}
+
+.header__link {
+  text-decoration: none;
+  color: black;
 }
