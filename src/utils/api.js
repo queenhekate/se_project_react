@@ -23,8 +23,8 @@ function addItem(item) {
   }).then(checkResponse);
 }
 
-function deleteItem(itemId) {
-  return fetch(`${baseUrl}/items/${itemId}`, {
+function deleteItem(_id) {
+  return fetch(`${baseUrl}/items/${_id}`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
