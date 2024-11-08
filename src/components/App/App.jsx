@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
-//import api from "../../utils/api";
 import "./App.css";
 import { coordinates, APIkey } from "../../utils/constants";
 import Header from "../Header/Header";
@@ -58,15 +57,13 @@ function App() {
   useEffect(() => {
     getItems()
       .then((data) => {
-        console.log(data);
         setClothingItems(data);
-        // set the clothing items
       })
       .catch(console.error);
   }, []);
 
   function handleAddItemSubmit(item, resetForm) {
-    return addItem(item) // Ensure this function returns a promise
+    return addItem(item)
       .then((createdItem) => {
         setClothingItems((prevItems) => [createdItem, ...prevItems]);
         resetForm();
