@@ -23,16 +23,13 @@ function addItem(item) {
   }).then(checkResponse);
 }
 
-function deleteItem(item) {
-  return fetch(`${baseUrl}/items`, {
+function deleteItem(itemId) {
+  return fetch(`${baseUrl}/items/${itemId}`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(item),
   }).then(checkResponse);
 }
-
-// const api = { getItems, addItem, deleteItem };
 
 export { getItems, addItem, deleteItem };

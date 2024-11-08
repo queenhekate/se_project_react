@@ -76,14 +76,16 @@ function App() {
       .catch(console.error);
   }
 
-  function handleConfirmDelete(card) {
-    api.deleteItem(cardToDelete._id).then(() => {
-      setClothingItems((card) =>
-        items.filter((card) => card._id !== cardToDelete._id)
-      );
-    });
-    setCardToDelete(null);
-    closeActiveModal().catch(console.error);
+  function handleConfirmDelete(cardToDelete) {
+    return deleteItem(cardToDelete._id)
+      .then(() => {
+        setClothingItems((prevItems) =>
+          prevItems.filter((item) => item._id !== cardToDelete._id)
+        );
+        setCardToDelete(null);
+        closeActiveModal();
+      })
+      .catch(console.error);
   }
 
   return (
@@ -133,7 +135,7 @@ function App() {
         />
         <ModalWithConfirm
           activeModal={activeModal}
-          onDeleteItem={handleConfirmDelete}
+          handleConfirmDelete={handleConfirmDelete}
           onClose={closeActiveModal}
         />
       </CurrentTemperatureUnitContext.Provider>
