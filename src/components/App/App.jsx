@@ -113,6 +113,7 @@ function App() {
                   onAddItem={handleAddItemSubmit}
                   handleCardClick={handleCardClick}
                   clothingItems={clothingItems}
+                  handleAddClick={handleAddClick}
                 />
               }
             />
