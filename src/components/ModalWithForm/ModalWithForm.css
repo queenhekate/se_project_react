@@ -104,7 +104,7 @@
   font-weight: 700;
   line-height: 20px;
   font-size: 16px;
-  background: #0000004d;
+  background: black;
   color: white;
   border: none;
   margin: 42px 16px;
@@ -115,6 +115,6 @@
   cursor: pointer;
 }
 
-.modal__submit_disabled {
+/* .modal__submit_disabled {
   opacity: 0.5;
-}
+} */

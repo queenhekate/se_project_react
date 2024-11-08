@@ -10,7 +10,8 @@ import Footer from "../Footer/Footer";
 import { CurrentTemperatureUnitContext } from "../../context/CurrentTemperatureUnitContext";
 import AddItemModal from "../AddItemModal/AddItemModal";
 import Profile from "../Profile/Profile";
-import { getItems, addItem } from "../../utils/api";
+import { getItems, addItem, deleteItem } from "../../utils/api";
+import ModalWithConfirm from "../ModalWithConfirm/ModalWithConfirm";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -34,6 +35,10 @@ function App() {
     setActiveModal("preview");
     setSelectedCard(card);
   };
+
+  const handleOpenDelete = (item) => {
+    setActiveModal("confirm");
+  }
 
   const handleToggleSwitchChange = () => {
     if (currentTemperatureUnit === "C") setCurrentTemperatureUnit("F");
@@ -68,6 +73,18 @@ function App() {
       })
       .catch(console.error);
   }
+
+  function handleConfirmDelete(id) => {
+    const onDeleteItem = (id) => {
+      deleteItem(id).then(() => {
+        const updateClothingItems = clothingItems.filter((item) => item.id !== id);
+
+        // Update the state with the new array
+        setClothingItems(updatedClothingItems);
+      })
+      .catch(console.error);
+  }
+};
 
   return (
     <div className="page">
@@ -111,6 +128,11 @@ function App() {
         <ItemModal
           activeModal={activeModal}
           card={selectedCard}
+          onClose={closeActiveModal}
+        />
+        <ModalWithConfirm
+          activeModal={activeModal}
+          onDeleteItem={handleConfirmDelete}
           onClose={closeActiveModal}
         />
       </CurrentTemperatureUnitContext.Provider>

@@ -113,6 +113,24 @@
       "imageUrl": "https://www.google.com/url?sa=",
       "type": "cold",
       "_id": 18
+    },
+    {
+      "name": "Poncho",
+      "imageUrl": "https://www.google.com/url?sa=",
+      "type": "warm",
+      "_id": 19
+    },
+    {
+      "name": "Poncho",
+      "imageUrl": "https://www.google.com/url?sa=",
+      "type": "",
+      "_id": 20
+    },
+    {
+      "name": "Poncho",
+      "imageUrl": "https://ecualama.com/cdn/shop/",
+      "type": "warm",
+      "_id": 21
     }
   ]
 }

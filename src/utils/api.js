@@ -23,6 +23,16 @@ function addItem(item) {
   }).then(checkResponse);
 }
 
-const api = { getItems, addItem };
+function deleteItem(item) {
+  return fetch(`${baseUrl}/items`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(item),
+  }).then(checkResponse);
+}
 
-export { getItems, addItem };
+const api = { getItems, addItem, deleteItem };
+
+export { getItems, addItem, deleteItem };

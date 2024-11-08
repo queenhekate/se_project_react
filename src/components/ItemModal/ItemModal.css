@@ -63,3 +63,9 @@
   margin: 12px 0 0;
   padding: 0;
 }
+
+.modal__open-delete {
+  color: rgba(255, 77, 0, 1);
+  cursor: pointer;
+  border: none;
+}
