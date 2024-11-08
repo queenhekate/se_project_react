@@ -33,6 +33,6 @@ function deleteItem(item) {
   }).then(checkResponse);
 }
 
-const api = { getItems, addItem, deleteItem };
+// const api = { getItems, addItem, deleteItem };
 
 export { getItems, addItem, deleteItem };

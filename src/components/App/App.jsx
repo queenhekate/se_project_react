@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
+//import api from "../../utils/api";
 import "./App.css";
 import { coordinates, APIkey } from "../../utils/constants";
 import Header from "../Header/Header";
@@ -22,6 +23,7 @@ function App() {
   const [selectedCard, setSelectedCard] = useState({});
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const [clothingItems, setClothingItems] = useState([]);
+  const [cardToDelete, setCardToDelete] = useState(null);
 
   const handleAddClick = () => {
     setActiveModal("add-garment");
@@ -36,9 +38,9 @@ function App() {
     setSelectedCard(card);
   };
 
-  const handleOpenDelete = (item) => {
+  const handleOpenDelete = () => {
     setActiveModal("confirm");
-  }
+  };
 
   const handleToggleSwitchChange = () => {
     if (currentTemperatureUnit === "C") setCurrentTemperatureUnit("F");
@@ -74,17 +76,15 @@ function App() {
       .catch(console.error);
   }
 
-  function handleConfirmDelete(id) => {
-    const onDeleteItem = (id) => {
-      deleteItem(id).then(() => {
-        const updateClothingItems = clothingItems.filter((item) => item.id !== id);
-
-        // Update the state with the new array
-        setClothingItems(updatedClothingItems);
-      })
-      .catch(console.error);
+  function handleConfirmDelete(card) {
+    api.deleteItem(cardToDelete._id).then(() => {
+      setClothingItems((card) =>
+        items.filter((card) => card._id !== cardToDelete._id)
+      );
+    });
+    setCardToDelete(null);
+    closeActiveModal().catch(console.error);
   }
-};
 
   return (
     <div className="page">
@@ -129,6 +129,7 @@ function App() {
           activeModal={activeModal}
           card={selectedCard}
           onClose={closeActiveModal}
+          onOpenDelete={handleOpenDelete}
         />
         <ModalWithConfirm
           activeModal={activeModal}
