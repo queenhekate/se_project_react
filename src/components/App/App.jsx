@@ -23,7 +23,6 @@ function App() {
   const [selectedCard, setSelectedCard] = useState({});
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const [clothingItems, setClothingItems] = useState([]);
-  const [cardToDelete, setCardToDelete] = useState(null);
 
   const handleAddClick = () => {
     setActiveModal("add-garment");
@@ -76,13 +75,12 @@ function App() {
       .catch(console.error);
   }
 
-  function handleConfirmDelete(cardToDelete) {
-    return deleteItem(cardToDelete._id)
+  function handleConfirmDelete() {
+    return deleteItem(selectedCard._id)
       .then(() => {
         setClothingItems((prevItems) =>
-          prevItems.filter((item) => item._id !== cardToDelete._id)
+          prevItems.filter((item) => item._id !== selectedCard._id)
         );
-        setCardToDelete(null);
         closeActiveModal();
       })
       .catch(console.error);
