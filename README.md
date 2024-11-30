@@ -25,38 +25,30 @@ To get started with the app, follow these steps:
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/queenhekate/se_project_react.git
+   Front-End: git clone https://github.com/queenhekate/se_project_react.git
+   Back-End:  git clone https://github.com/queenhekate/se_project_express.git
    ```
-<<<<<<< HEAD
 2. Navigate into the project directory:
 
-=======
-   
-2. Navigate into the project directory:
->>>>>>> 6d7df203f6e80c87276f439ba5f7255eb2c2242f
    ```bash
    cd se_project_react
+   cd se_project_express
    ```
 
 3. Install the dependencies:
-<<<<<<< HEAD
 
-=======
->>>>>>> 6d7df203f6e80c87276f439ba5f7255eb2c2242f
    ```bash
    npm install
    ```
 
 4. Start the development server:
-<<<<<<< HEAD
 
-=======
->>>>>>> 6d7df203f6e80c87276f439ba5f7255eb2c2242f
    ```bash
-   npm start
+   npm run dev
    ```
 
 5. Open your browser and go to `http://localhost:3000` to view the app.
+   Run the back end on a different server such as `http://localhost:3001`.
 
 ## Usage
 

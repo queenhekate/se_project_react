@@ -12,6 +12,7 @@ import AddItemModal from "../AddItemModal/AddItemModal";
 import Profile from "../Profile/Profile";
 import { getItems, addItem, deleteItem } from "../../utils/api";
 import ModalWithConfirm from "../ModalWithConfirm/ModalWithConfirm";
+import RegisterModal from "../RegisterModal/RegisterModal";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -22,6 +23,12 @@ function App() {
   const [selectedCard, setSelectedCard] = useState({});
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const [clothingItems, setClothingItems] = useState([]);
+  const [currentUser, setCurrentUser] = userState({
+    name: "",
+    email: "",
+    avatar: "",
+    _id: "",
+  });
 
   const handleAddClick = () => {
     setActiveModal("add-garment");
@@ -71,6 +78,15 @@ function App() {
       })
       .catch(console.error);
   }
+
+  const handleRegistration = (name, avatar, email, password) => {
+    register(name, avatar, email, password)
+      .then(() => {
+        handleLogin(email, password);
+        closeActiveModal();
+      })
+      .catch(console.error);
+  };
 
   function handleConfirmDelete() {
     return deleteItem(selectedCard._id)
@@ -133,6 +149,14 @@ function App() {
           activeModal={activeModal}
           handleConfirmDelete={handleConfirmDelete}
           onClose={closeActiveModal}
+        />
+        <RegisterModal
+          activeModal={activeModal}
+          onClose={closeActiveModal}
+          isOpen={activeModal === "register"}
+          handleRegistration={handleRegistration}
+          buttonText={isLoading ? "Saving..." : "Sign Up"}
+          openSignInModal={openSignInModal}
         />
       </CurrentTemperatureUnitContext.Provider>
     </div>

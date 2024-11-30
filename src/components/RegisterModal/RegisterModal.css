@@ -1,0 +1,18 @@
+.modal__btn-login {
+  margin: 16px 0 0;
+  background: #fff;
+  color: #00000080;
+  border: none;
+  padding: 8px 16px;
+  gap: 8px;
+  width: fit-content;
+  position: absolute;
+  bottom: 38px;
+  left: 116px;
+}
+
+@media screen and (max-width: 550px) {
+  .modal__btn-login {
+    bottom: 37px;
+  }
+}
