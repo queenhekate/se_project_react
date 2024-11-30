@@ -9,7 +9,7 @@ function RegisterModal({
   isOpen,
   handleRegistration,
   buttonText,
-  openSignInModal,
+  openLoginModal,
 }) {
   const { values, handleChange, resetForm, errors } = useFormWithValidation();
 
@@ -94,7 +94,7 @@ function RegisterModal({
       <button
         type="button"
         className="modal__btn-login"
-        onClick={openSignInModal}
+        onClick={openLoginModal}
       >
         or Log In
       </button>

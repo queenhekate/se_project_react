@@ -1,25 +1,13 @@
 .header {
   display: flex;
+  flex-direction: row;
   align-items: center;
-  padding: 32px 40px 28px 40px;
+  padding: 32px 0 28px;
+  line-size: 20px;
   font-size: 20px;
   font-weight: 700;
   line-height: 24px;
-  justify-content: space-evenly;
-}
-
-.header__container {
-  display: flex;
-}
-
-.header__grid {
-  display: grid;
-  flex: 1; /*Allow the grid container to grow and fill available space */
-  justify-content: end; /* Right-align the grid items */
-  grid-template-columns: auto auto auto; /* Three columns */
-  grid-template-rows: auto;
-  gap: 20px;
-  align-items: center;
+  justify-content: space-between;
 }
 
 .header__logo {
@@ -27,38 +15,110 @@
   cursor: pointer;
 }
 
-.header__date-and-location {
-  margin: 0;
-  text-align: left;
-  font-size: 20px;
-  font-weight: 700;
-  line-height: 24px;
+.header__date-location {
+  margin: 0 auto 0 0;
 }
 
 .header__add-clothes-btn {
-  margin: 0px 20px;
+  padding: 0 0 0 20px;
   border: none;
-  font-size: 20px;
   font-weight: 700;
-  line-height: 24px;
   cursor: pointer;
 }
 
-.header__user-container {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
-
 .header__username {
-  margin: 0;
-  font-size: 20px;
-  font-weight: 700;
+  margin: 0 12px 0 20px;
   line-height: 24px;
 }
 
 .header__link {
+  display: flex;
+  align-items: center
   text-decoration: none;
   color: black;
   cursor: pointer;
+}
+
+.header__menu-icon {
+  visibility: hidden;
+}
+
+.header__avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.header__placeholder {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #ccc;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.header__guest-nav {
+  display: flex;
+  margin-left: 20px;
+}
+
+.header__signin {
+  padding-left: 20px;
+  color: #000000;
+  border: none;
+  font-size: 20px;
+  line-height: 24px;
+  font-weight: bold;
+}
+
+.header__signup {
+  color: #000000;
+  border: none;
+  font-size: 20px;
+  line-height: 24px;
+  font-weight: bold;
+}
+
+@media screen and (max-width: 550px) {
+  .header {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0;
+  }
+
+  .header__logo {
+    margin: 0 0 32px 0;
+  }
+
+  .header__date-location {
+    margin-left: 0;
+    margin-bottom: 16px;
+  }
+
+  .header__user-container {
+    display: none;
+  }
+
+  .header__mobile-view {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    position: relative;
+  }
+
+  .header__menu-icon {
+    visibility: visible;
+    background: transparent url(../../assets/mobile-menu-btn.svg) no-repeat;
+    color: black;
+    border: none;
+    width: 54px;
+    height: 54px;
+    overflow: auto;
+  }
 }

@@ -8,26 +8,46 @@ function checkResponse(response) {
 }
 
 function getItems() {
-  return fetch(`${baseUrl}/items`).then(checkResponse);
+  return request(`${baseUrl}/items`).then(checkResponse);
 }
 
-function addItem(item) {
-  return fetch(`${baseUrl}/items`, {
+function addItem({ name, imageUrl, weather }, token) {
+  return request(`${baseUrl}/items`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
     },
-    body: JSON.stringify(item),
-  }).then(checkResponse);
+    body: JSON.stringify({ name, imageUrl, weather }),
+  });
 }
 
 function deleteItem(id) {
-  return fetch(`${baseUrl}/items/${id}`, {
+  return request(`${baseUrl}/items/${id}`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
     },
-  }).then(checkResponse);
+  });
 }
 
-export { getItems, addItem, deleteItem };
+function addCardLike(id, token) {
+  return request(`${baseUrl}/items/${id}/likes`, {
+    method: "PUT",
+    headers: {
+      authorization: `Bearer ${token}`,
+    },
+  });
+}
+
+function removeCardLike(id, token) {
+  return request(`${baseUrl}/items/${id}/likes`, {
+    method: "DELETE",
+    headers: {
+      authorization: `Bearer ${token}`,
+    },
+  });
+}
+
+export { getItems, addItem, deleteItem, addCardLike, removeCardLike };
