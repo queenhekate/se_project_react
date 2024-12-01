@@ -12,7 +12,7 @@ import { CurrentTemperatureUnitContext } from "../../context/CurrentTemperatureU
 import { CurrentUserContext } from "../../context/CurrentUserContext.js";
 import AddItemModal from "../AddItemModal/AddItemModal";
 import Profile from "../Profile/Profile";
-import { getItems, addItem, deleteItem } from "../../utils/api.js";
+// import { getItems, addItem, deleteItem } from "../../utils/api.js";
 import ModalWithConfirm from "../ModalWithConfirm/ModalWithConfirm";
 import { setToken, getToken, removeToken } from "../../utils/token.js";
 import RegisterModal from "../RegisterModal/RegisterModal";
@@ -103,7 +103,10 @@ function App() {
   }, []);
 
   useEffect(() => {
-    getWeather()
+    getWeather(
+      { latitude: coordinates.latitude, longitude: coordinates.longitude },
+      APIkey
+    )
       .then((data) => {
         setWeatherData(filterWeatherData(data));
       })
@@ -171,7 +174,7 @@ function App() {
     login(email, password)
       .then((data) => {
         if (data.token && data.user) {
-          //localStorage.setItem("jwt", res.token);
+          localStorage.setItem("jwt", data.token);
           setToken(data.token);
           setIsLoggedIn(true);
           console.log(data.user);
@@ -188,6 +191,8 @@ function App() {
       .finally(setIsLoggedInLoading(false));
   };
 
+  const token = localStorage.getItem("jwt");
+
   const handleEditProfile = (name, avatar) => {
     const token = getToken();
 
@@ -197,7 +202,7 @@ function App() {
     }
 
     setIsLoading(true);
-    handleEditProfile(name, avatar, token)
+    editProfileData(name, avatar, token)
       .then((userData) => {
         const user = userData.user;
         setUserData({
@@ -213,6 +218,7 @@ function App() {
 
   const handleLogOut = () => {
     if (isLoggedIn) {
+      localStorage.removeItem("jwt");
       removeToken();
       setIsLoggedIn(false);
       setUserData({});
