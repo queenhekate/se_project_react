@@ -158,7 +158,7 @@ function App() {
       .finally(() => setIsLoading(false));
   }
 
-  const handleRegistration = (name, avatar, email, password) => {
+  const handleRegistration = (email, password, name, avatar) => {
     register(name, avatar, email, password)
       .then(() => {
         handleLogin(email, password);

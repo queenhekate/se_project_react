@@ -38,13 +38,6 @@ function Header({
       <ToggleSwitch />
       {isLoggedIn ? (
         <div className="header__user-container">
-          <div className="header__mobile-view">
-            <button
-              className="header__menu-icon"
-              type="button"
-              onClick={toggleMobileMenu}
-            />
-          </div>
           <button
             onClick={handleAddClick}
             type="button"
