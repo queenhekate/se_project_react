@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
+import React from "react";
 import "./Header.css";
 import logo from "../../images/logo.svg";
-import avatar from "../../images/avatar.png";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
-import { CurrentUserContext } from "../../context/CurrentUserContext";
+import { CurrentUserContext } from "../../context/CurrentUserContext.js";
 
 function Header({
   handleAddClick,
@@ -70,7 +70,7 @@ function Header({
       ) : (
         <div className="header__guest-nav">
           <button
-            onClick={openSignUpModal}
+            onClick={openRegisterModal}
             type="button"
             className="header__signup"
           >

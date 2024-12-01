@@ -1,17 +1,31 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
+import { useFormWithValidation } from "../../hooks/useFormWithValidation.js";
 
-const AddItemModal = ({ activeModal, onClose, isOpen, onSubmit }) => {
+function AddItemModal({
+  activeModal,
+  onClose,
+  isOpen,
+  onSubmit,
+  onAddItem,
+  buttonText,
+}) {
+  const { values, resetForm, errors } = useFormWithValidation();
+
+  useEffect(() => {
+    resetForm();
+  }, [isOpen]);
+
   const [name, setName] = useState("");
   const handleNameChange = (e) => {
     setName(e.target.value);
   };
 
-  const resetForm = () => {
-    setName("");
-    setUrl("");
-    setWeather("");
-  };
+  // const resetForm = () => {
+  //   setName("");
+  //   setUrl("");
+  //   setWeather("");
+  // };
 
   const [imageUrl, setUrl] = useState("");
   const handleUrlChange = (e) => {
@@ -27,14 +41,15 @@ const AddItemModal = ({ activeModal, onClose, isOpen, onSubmit }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const newItem = { name, imageUrl, weather };
+    onAddItem(values.name, values.imageUrl, values.weather);
     onSubmit(newItem, resetForm);
   };
 
   return (
     <ModalWithForm
       title="New Garment"
-      buttonText="Add garment"
+      name="clothes"
+      buttonText={buttonText}
       activeModal={activeModal}
       isOpen={isOpen}
       onClose={onClose}
@@ -43,29 +58,34 @@ const AddItemModal = ({ activeModal, onClose, isOpen, onSubmit }) => {
       <label htmlFor="name" className="modal__label">
         Name{" "}
         <input
+          name="name"
           type="text"
           className="modal__input"
-          id="name"
+          id="item-name"
           placeholder="Name"
-          minLength="1"
-          maxLength="30"
+          minLength={2}
           value={name}
           onChange={handleNameChange}
           required
         />
+        {errors.name && <span className="modal__error">{errors.name}</span>}
       </label>
       <label htmlFor="imageURL" className="modal__label">
-        Name{" "}
+        Image{" "}
         <input
           type="url"
           className="modal__input"
-          id="imageURL"
+          id="imageUrl"
+          name="imageUrl"
           placeholder="Image URL"
           minLength="1"
-          value={imageUrl}
+          value={values.imageUrl}
           onChange={handleUrlChange}
           required
         />
+        {errors.imageUrl && (
+          <span className="modal__error">{errors.imageUrl}</span>
+        )}
       </label>
       <fieldset className="modal__radio-buttons">
         <legend className="modal__legend">Select the weather type:</legend>
@@ -73,10 +93,11 @@ const AddItemModal = ({ activeModal, onClose, isOpen, onSubmit }) => {
           <input
             id="hot"
             type="radio"
-            name="radAnswer"
+            name="weather"
             className="modal__radio-input"
             value="hot"
             onChange={handleWeatherChange}
+            checked={values.weather === "hot"}
             required
           />
           <span>&nbsp;Hot</span>
@@ -85,10 +106,11 @@ const AddItemModal = ({ activeModal, onClose, isOpen, onSubmit }) => {
           <input
             id="warm"
             type="radio"
-            name="radAnswer"
+            name="weather"
             className="modal__radio-input"
             value="warm"
             onChange={handleWeatherChange}
+            checked={values.weather === "warm"}
             required
           />
           <span>&nbsp;Warm</span>
@@ -97,17 +119,21 @@ const AddItemModal = ({ activeModal, onClose, isOpen, onSubmit }) => {
           <input
             id="cold"
             type="radio"
-            name="radAnswer"
+            name="weather"
             className="modal__radio-input"
             value="cold"
             onChange={handleWeatherChange}
+            checked={values.weather === "cold"}
             required
           />
           <span>&nbsp;Cold</span>
         </label>
+        {errors.weather && (
+          <span className="modal__error">{errors.weather}</span>
+        )}
       </fieldset>
     </ModalWithForm>
   );
-};
+}
 
 export default AddItemModal;

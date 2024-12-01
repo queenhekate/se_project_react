@@ -5,6 +5,16 @@
   justify-content: center;
 }
 
+.card__name-container {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 18px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
 .card__name {
   font-family: "Cabinet Grotesk", sans-serif;
   font-size: 16px;
@@ -23,4 +33,16 @@
   width: 100%;
   border-radius: 19px;
   border: 1px solid #0000004d;
+}
+
+.card__like-hidden {
+  display: none;
+}
+
+.card__like-visible {
+  display: block;
+}
+
+.card__like-visible:hover {
+  opacity: 30%;
 }

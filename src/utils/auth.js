@@ -1,6 +1,6 @@
-import { baseUrl, request } from "../utils/constants";
+import { baseUrl, request } from "./constants";
 
-function register(name, avatar, email, password) {
+export function register(name, avatar, email, password) {
   return request(`${baseUrl}/signup`, {
     method: "POST",
     headers: {
@@ -16,20 +16,20 @@ function register(name, avatar, email, password) {
   });
 }
 
-function login(email, passsword) {
+export function login(email, password) {
   return request(`${baseUrl}/signin`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    ody: JSON.stringify({
+    Body: JSON.stringify({
       email,
       password,
     }),
   });
 }
 
-function checkToken(token) {
+export function checkToken(token) {
   return request(`${baseUrl}/users/me`, {
     method: "GET",
     headers: {
@@ -39,4 +39,16 @@ function checkToken(token) {
   });
 }
 
-export default auth;
+export function editProfileData(name, avatar, token) {
+  return request(`${baseUrl}/users/me`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({
+      name,
+      avatar,
+    }),
+  });
+}

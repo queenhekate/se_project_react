@@ -21,6 +21,7 @@ function RegisterModal({
       values.name,
       values.avatarUrl
     );
+    resetForm();
   };
 
   return (

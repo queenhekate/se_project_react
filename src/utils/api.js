@@ -1,4 +1,4 @@
-const baseUrl = "http://localhost:3001";
+import { baseUrl, request } from "../utils/constants.js";
 
 function checkResponse(response) {
   if (response.ok) {

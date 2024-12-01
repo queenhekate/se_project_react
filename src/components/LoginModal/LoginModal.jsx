@@ -11,16 +11,18 @@ function LoginModal({
   buttonText,
   openRegisterModal,
 }) {
-  const { values, handleChange, errors } = useFormWithValidation();
+  const { values, handleChange, resetForm, errors } = useFormWithValidation();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     handleLogin(values.email, values.password);
+    resetForm();
   };
 
   return (
     <ModalWithForm
       title="Log In"
+      name="login"
       activeModal={activeModal}
       isOpen={isOpen}
       onClose={onClose}
@@ -35,7 +37,7 @@ function LoginModal({
           id="email"
           name="email"
           placeholder="Email"
-          minLength="2"
+          minLength={2}
           value={values.email}
           onChange={handleChange}
           required

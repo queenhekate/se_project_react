@@ -1,0 +1,13 @@
+.modal__error {
+  color: red;
+  font-size: 16px;
+  margin-top: 0;
+}
+
+.modal__label_type_radio {
+  margin: 0;
+}
+
+.modal__radio-buttons {
+  margin-top: 24px;
+}

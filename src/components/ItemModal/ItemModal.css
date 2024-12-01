@@ -73,3 +73,11 @@
   border: none;
   background: transparent;
 }
+
+.modal__delete-btn_visible {
+  display: block;
+}
+
+.modal__delete-btn_hidden {
+  display: none;
+}
