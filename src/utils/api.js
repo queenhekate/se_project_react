@@ -1,10 +1,10 @@
 import { baseUrl, request } from "../utils/constants.js";
 
-function checkResponse(response) {
-  if (response.ok) {
-    return response.json();
+function checkResponse(res) {
+  if (res.ok) {
+    return res.json();
   }
-  return Promise.reject(`Error: ${response.status}`);
+  return Promise.reject(`Error: ${res.status}`);
 }
 
 function getItems() {

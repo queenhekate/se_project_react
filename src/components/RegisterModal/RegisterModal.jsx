@@ -11,7 +11,7 @@ function RegisterModal({
   buttonText,
   openLoginModal,
 }) {
-  const { values, handleChange, resetForm, errors } = useFormWithValidation();
+  const { values, handleChange, errors } = useFormWithValidation();
 
   const handleSubmit = (e) => {
     e.preventDefault();
