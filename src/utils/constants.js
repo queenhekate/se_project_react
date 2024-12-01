@@ -5,10 +5,7 @@ export const coordinates = {
 
 export const APIkey = "c8f3832ad336e9326ddd13338eda164d";
 
-export const baseUrl =
-  process.env.NODE_ENV === "production"
-    ? "https://api.projectreact.twilightparadox.com"
-    : "http://localhost:3001";
+export const baseUrl = "http://localhost:3001";
 
 export function checkResponse(res) {
   if (res.ok) {

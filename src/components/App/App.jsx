@@ -94,6 +94,7 @@ function App() {
         setIsLoggedInLoading(false);
         setIsLoggedIn(true);
         setUserData(data.user);
+        localStorage.setItem("jwt", data.token);
       })
       .catch((error) => {
         console.error("Invalid token:", error);
@@ -190,8 +191,6 @@ function App() {
       })
       .finally(setIsLoggedInLoading(false));
   };
-
-  const token = localStorage.getItem("jwt");
 
   const handleEditProfile = (name, avatar) => {
     const token = getToken();
