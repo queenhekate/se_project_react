@@ -16,7 +16,6 @@ function LoginModal({
   const handleSubmit = (e) => {
     e.preventDefault();
     handleLogin(values.email, values.password);
-    resetForm();
   };
 
   return (
@@ -34,12 +33,12 @@ function LoginModal({
         <input
           type="text"
           className="modal__input"
-          id="email"
           name="email"
           placeholder="Email"
           minLength={2}
           value={values.email}
           onChange={handleChange}
+          autoComplete="email"
           required
         />
         {errors.email && <span className="modal__error">{errors.email}</span>}
@@ -49,9 +48,9 @@ function LoginModal({
         <input
           type="password"
           className="modal__input"
-          id="password"
           name="password"
           placeholder="Password"
+          autoComplete="current-password"
           value={values.password}
           onChange={handleChange}
           required

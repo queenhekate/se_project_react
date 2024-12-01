@@ -27,7 +27,6 @@ function EditProfileModal({
   const handleSubmit = (e) => {
     e.preventDefault();
     handleEditProfile(values.name, values.avatarUrl);
-    resetForm();
   };
 
   return (
@@ -45,7 +44,6 @@ function EditProfileModal({
         <input
           type="text"
           className="modal__input"
-          id="name"
           name="name"
           placeholder="Name"
           minLength="2"
@@ -61,7 +59,6 @@ function EditProfileModal({
           type="url"
           className="modal__input"
           name="avatarUrl"
-          id="edit-avatar"
           placeholder="Avatar URL"
           value={values.avatarUrl}
           onChange={handleChange}

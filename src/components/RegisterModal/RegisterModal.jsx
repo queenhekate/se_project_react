@@ -21,7 +21,6 @@ function RegisterModal({
       values.name,
       values.avatarUrl
     );
-    resetForm();
   };
 
   return (
@@ -38,12 +37,13 @@ function RegisterModal({
         Email *{" "}
         <input
           type="email"
+          name="email"
           className="modal__input"
-          id="email"
           placeholder="Email"
           value={values.email}
           onChange={handleChange}
-          minLength={2}
+          minLength="2"
+          autoComplete="email"
         />
         {errors.email && <span className="modal__error">{errors.email}</span>}
       </label>
@@ -53,11 +53,11 @@ function RegisterModal({
           type="password"
           name="password"
           className="modal__input"
-          id="password"
           placeholder="Password"
           minLength="1"
           value={values.password}
           onChange={handleChange}
+          autoComplete="current-password"
         />
         {errors.password && (
           <span className="modal__error">{errors.password}</span>
@@ -68,7 +68,6 @@ function RegisterModal({
         <input
           type="text"
           className="modal__input"
-          id="name"
           name="name"
           placeholder="Name"
           minLength="2"
@@ -83,7 +82,6 @@ function RegisterModal({
           type="url"
           className="modal__input"
           name="avatarUrl"
-          id="avatarURL"
           placeholder="Avatar URL"
           value={values.avatarUrl}
           onChange={handleChange}

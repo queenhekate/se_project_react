@@ -82,26 +82,26 @@ function App() {
     if (currentTemperatureUnit === "F") setCurrentTemperatureUnit("C");
   };
 
-  useEffect(() => {
-    const jwt = getToken();
-    if (!jwt) {
-      console.error("No token found in local storage");
-      return;
-    }
+  // useEffect(() => {
+  //   const jwt = getToken();
+  //   if (!jwt) {
+  //     console.error("No token found in local storage");
+  //     return;
+  //   }
 
-    checkToken(jwt)
-      .then((data) => {
-        setIsLoggedInLoading(false);
-        setIsLoggedIn(true);
-        setUserData(data.user);
-        localStorage.setItem("jwt", data.token);
-      })
-      .catch((error) => {
-        console.error("Invalid token:", error);
-        removeToken();
-        setIsLoggedInLoading(false);
-      });
-  }, []);
+  //   checkToken(jwt)
+  //     .then((data) => {
+  //       setIsLoggedInLoading(false);
+  //       setIsLoggedIn(true);
+  //       setUserData(data.user);
+  //       localStorage.setItem("jwt", data.token);
+  //     })
+  //     .catch((error) => {
+  //       console.error("Invalid token:", error);
+  //       removeToken();
+  //       setIsLoggedInLoading(false);
+  //     });
+  // }, []);
 
   useEffect(() => {
     getWeather(
@@ -140,7 +140,7 @@ function App() {
   }, [activeModal]);
 
   function onAddItem(name, imageUrl, weather) {
-    const token = getToken();
+    const token = localStorage.getItem("jwt");
     if (!token) {
       console.err("User not authorized");
       return;
@@ -176,7 +176,6 @@ function App() {
       .then((data) => {
         if (data.token && data.user) {
           localStorage.setItem("jwt", data.token);
-          setToken(data.token);
           setIsLoggedIn(true);
           console.log(data.user);
           setUserData(data.user);
@@ -193,7 +192,7 @@ function App() {
   };
 
   const handleEditProfile = (name, avatar) => {
-    const token = getToken();
+    const token = localStorage.getItem("jwt");
 
     if (!currentUser) {
       console.error("User not authorized to modify profile");
@@ -218,7 +217,6 @@ function App() {
   const handleLogOut = () => {
     if (isLoggedIn) {
       localStorage.removeItem("jwt");
-      removeToken();
       setIsLoggedIn(false);
       setUserData({});
       closeActiveModal();
@@ -254,7 +252,7 @@ function App() {
   };
 
   function onDeleteItem(id) {
-    const token = getToken();
+    const token = localStorage.getItem("jwt");
     if (!token) {
       console.error("Not authorized");
       return;

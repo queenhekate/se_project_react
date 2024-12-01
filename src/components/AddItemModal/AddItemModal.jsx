@@ -61,7 +61,6 @@ function AddItemModal({
           name="name"
           type="text"
           className="modal__input"
-          id="item-name"
           placeholder="Name"
           minLength={2}
           value={name}
@@ -75,7 +74,6 @@ function AddItemModal({
         <input
           type="url"
           className="modal__input"
-          id="imageUrl"
           name="imageUrl"
           placeholder="Image URL"
           minLength="1"
@@ -91,7 +89,6 @@ function AddItemModal({
         <legend className="modal__legend">Select the weather type:</legend>
         <label htmlFor="hot" className="modal__label modal__label_type_radio">
           <input
-            id="hot"
             type="radio"
             name="weather"
             className="modal__radio-input"
@@ -104,7 +101,6 @@ function AddItemModal({
         </label>
         <label htmlFor="warm" className="modal__label modal__label_type_radio">
           <input
-            id="warm"
             type="radio"
             name="weather"
             className="modal__radio-input"
@@ -117,7 +113,6 @@ function AddItemModal({
         </label>
         <label htmlFor="cold" className="modal__label modal__label_type_radio">
           <input
-            id="cold"
             type="radio"
             name="weather"
             className="modal__radio-input"
