@@ -14,7 +14,6 @@ import AddItemModal from "../AddItemModal/AddItemModal";
 import Profile from "../Profile/Profile";
 // import { getItems, addItem, deleteItem } from "../../utils/api.js";
 import ModalWithConfirm from "../ModalWithConfirm/ModalWithConfirm";
-import { setToken, getToken, removeToken } from "../../utils/token.js";
 import RegisterModal from "../RegisterModal/RegisterModal";
 import LoginModal from "../LoginModal/LoginModal";
 import {
@@ -39,7 +38,7 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isLoggedInLoading, setIsLoggedInLoading] = useState(true);
-  const [currentUser, setUserData] = useState({
+  const [currentUser, setCurrentUser] = useState({
     name: "",
     email: "",
     avatar: "",
@@ -82,26 +81,36 @@ function App() {
     if (currentTemperatureUnit === "F") setCurrentTemperatureUnit("C");
   };
 
-  // useEffect(() => {
-  //   const jwt = getToken();
-  //   if (!jwt) {
-  //     console.error("No token found in local storage");
-  //     return;
-  //   }
+  const JWT_SECRET = "jwt";
+  // with localStorage the key TOKEN_KEY.
+  const setToken = (token) => localStorage.setItem(JWT_SECRET, token);
+  // getToken retrieves and returns the value associated with TOKEN_KEY from localStorage.
+  const getToken = () => {
+    return localStorage.getItem(JWT_SECRET);
+  };
+  const removeToken = () => {
+    return localStorage.removeItem(JWT_SECRET);
+  };
 
-  //   checkToken(jwt)
-  //     .then((data) => {
-  //       setIsLoggedInLoading(false);
-  //       setIsLoggedIn(true);
-  //       setUserData(data.user);
-  //       localStorage.setItem("jwt", data.token);
-  //     })
-  //     .catch((error) => {
-  //       console.error("Invalid token:", error);
-  //       removeToken();
-  //       setIsLoggedInLoading(false);
-  //     });
-  // }, []);
+  useEffect(() => {
+    const jwt = getToken();
+    if (!jwt) {
+      console.error("No token found in local storage");
+      return;
+    }
+
+    checkToken(jwt)
+      .then((data) => {
+        setIsLoggedInLoading(false);
+        setIsLoggedIn(true);
+        setCurrentUser(data.user);
+      })
+      .catch((error) => {
+        console.error("Invalid token:", error);
+        removeToken();
+        setIsLoggedInLoading(false);
+      });
+  }, []);
 
   useEffect(() => {
     getWeather(
@@ -140,7 +149,7 @@ function App() {
   }, [activeModal]);
 
   function onAddItem(name, imageUrl, weather) {
-    const token = localStorage.getItem("jwt");
+    const token = getToken();
     if (!token) {
       console.err("User not authorized");
       return;
@@ -159,7 +168,7 @@ function App() {
   }
 
   const handleRegistration = (email, password, name, avatar) => {
-    register(name, avatar, email, password)
+    register(email, password, name, avatar)
       .then(() => {
         handleLogin(email, password);
         closeActiveModal();
@@ -167,19 +176,32 @@ function App() {
       .catch(console.error);
   };
 
+  function getUserData() {
+    // use the token from the local storage
+    getToken(currentUser)
+      // fetch the data from the api
+      .then((userData) => {
+        // set the currentUser in this function, not on the login function
+        const user = userData.user;
+        setCurrentUser({
+          _id: currentUser._id,
+          email: currentUser.email,
+          name: currentUser.name,
+          avatar: currentUser.avatar,
+        });
+      });
+  }
+
   const handleLogin = (email, password) => {
     if (!email || !password) {
       return;
     }
-
     login(email, password)
       .then((data) => {
-        if (data.token && data.user) {
-          localStorage.setItem("jwt", data.token);
+        if (data.token) {
+          setToken(data.token);
           setIsLoggedIn(true);
-          console.log(data.user);
-          setUserData(data.user);
-          setIsLoggedInLoading(false);
+          getUserData();
         } else {
           console.error("No JWT token found.");
         }
@@ -192,18 +214,17 @@ function App() {
   };
 
   const handleEditProfile = (name, avatar) => {
-    const token = localStorage.getItem("jwt");
+    const token = getToken();
 
     if (!currentUser) {
       console.error("User not authorized to modify profile");
       return;
     }
-
     setIsLoading(true);
     editProfileData(name, avatar, token)
       .then((userData) => {
         const user = userData.user;
-        setUserData({
+        setCurrentUser({
           _id: currentUser._id,
           email: currentUser.email,
           name: user.name,
@@ -216,9 +237,9 @@ function App() {
 
   const handleLogOut = () => {
     if (isLoggedIn) {
-      localStorage.removeItem("jwt");
+      removeToken();
       setIsLoggedIn(false);
-      setUserData({});
+      setCurrentUser({});
       closeActiveModal();
     } else {
       console.err("Cannot be logged out");
@@ -226,7 +247,7 @@ function App() {
   };
 
   const handleCardLike = ({ id, isLiked }) => {
-    const token = localStorage.getItem("jwt");
+    const token = getToken();
 
     !isLiked
       ? // if so, send a request to add the user's id to the card's likes array
@@ -252,7 +273,7 @@ function App() {
   };
 
   function onDeleteItem(id) {
-    const token = localStorage.getItem("jwt");
+    const token = getToken();
     if (!token) {
       console.error("Not authorized");
       return;
