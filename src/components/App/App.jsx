@@ -6,11 +6,7 @@ import Main from "../Main/Main";
 import { getWeather, filterWeatherData } from "../../utils/WeatherApi";
 import Footer from "../Footer/Footer";
 import ItemModal from "../ItemModal/ItemModal";
-import {
-  coordinates,
-  APIkey,
-  defaultClothingItems,
-} from "../../utils/constants.js";
+import { coordinates, APIkey } from "../../utils/constants.js";
 import * as api from "../../utils/api.js";
 import { CurrentTemperatureUnitContext } from "../../context/CurrentTemperatureUnitContext.js";
 import { CurrentUserContext } from "../../context/CurrentUserContext.js";
@@ -229,10 +225,10 @@ function App() {
       .then((userData) => {
         const user = userData.user;
         setCurrentUser({
-          _id: currentUser._id,
-          email: currentUser.email,
-          name: user.name,
-          avatar: user.avatar,
+          _id: userData._id,
+          email: userData.email,
+          name: userData.name,
+          avatar: userData.avatar,
         });
         closeActiveModal();
       })
@@ -311,14 +307,12 @@ function App() {
               <Route
                 path="/"
                 element={
-                  defaultClothingItems.length > 0 && (
-                    <Main
-                      weatherData={weatherData}
-                      handleCardClick={handleCardClick}
-                      clothingItems={clothingItems}
-                      onCardLike={handleCardLike}
-                    />
-                  )
+                  <Main
+                    weatherData={weatherData}
+                    handleCardClick={handleCardClick}
+                    clothingItems={clothingItems}
+                    onCardLike={handleCardLike}
+                  />
                 }
               />
               <Route
