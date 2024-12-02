@@ -103,7 +103,7 @@ function App() {
       .then((data) => {
         setIsLoggedInLoading(false);
         setIsLoggedIn(true);
-        setCurrentUser(data.user);
+        setCurrentUser(data);
       })
       .catch((error) => {
         console.error("Invalid token:", error);
@@ -349,6 +349,7 @@ function App() {
             card={selectedCard}
             onClose={closeActiveModal}
             onOpenDelete={handleOpenDelete}
+            clothingItems={clothingItems}
             // onCardLike={handleCardLike}
           />
           <ModalWithConfirm
