@@ -1,6 +1,6 @@
 import { baseUrl, request } from "./constants";
 
-export function register(name, avatar, email, password) {
+export function register(email, password, name, avatar) {
   return request(`${baseUrl}/signup`, {
     method: "POST",
     headers: {
@@ -17,12 +17,13 @@ export function register(name, avatar, email, password) {
 }
 
 export function login(email, password) {
+  console.log(">>login", email);
   return request(`${baseUrl}/signin`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    Body: JSON.stringify({
+    body: JSON.stringify({
       email,
       password,
     }),

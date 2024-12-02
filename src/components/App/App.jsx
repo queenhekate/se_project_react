@@ -91,6 +91,7 @@ function App() {
   const getToken = () => {
     return localStorage.getItem(JWT_SECRET);
   };
+
   const removeToken = () => {
     return localStorage.removeItem(JWT_SECRET);
   };
@@ -179,18 +180,18 @@ function App() {
       .catch(console.error);
   };
 
-  function getUserData() {
+  function getUserData(token) {
     // use the token from the local storage
-    getToken(currentUser)
+    checkToken(token)
       // fetch the data from the api
       .then((userData) => {
         // set the currentUser in this function, not on the login function
         const user = userData.user;
         setCurrentUser({
-          _id: currentUser._id,
-          email: currentUser.email,
-          name: currentUser.name,
-          avatar: currentUser.avatar,
+          _id: userData._id,
+          email: userData.email,
+          name: userData.name,
+          avatar: userData.avatar,
         });
       });
   }
@@ -204,14 +205,14 @@ function App() {
         if (data.token) {
           setToken(data.token);
           setIsLoggedIn(true);
-          getUserData();
+          getUserData(data.token);
         } else {
           console.error("No JWT token found.");
         }
         closeActiveModal();
       })
       .catch((err) => {
-        console.err("Error logging user in:", err);
+        console.error("Error logging user in:", err);
       })
       .finally(setIsLoggedInLoading(false));
   };
