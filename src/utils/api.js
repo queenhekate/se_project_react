@@ -22,7 +22,7 @@ function addItem({ name, imageUrl, weather }, token) {
   });
 }
 
-function deleteItem(id) {
+function deleteItem(id, token) {
   return request(`${baseUrl}/items/${id}`, {
     method: "DELETE",
     headers: {

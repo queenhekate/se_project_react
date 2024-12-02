@@ -36,42 +36,43 @@ function Main({
           Today is {weatherData?.temp[currentTemperatureUnit]} / You may want to
           wear:
         </p>
-
-        {isLoggedIn ? (
-          <ul className="cards__list">
-            {clothingItems
-              .filter((item) => {
-                return item.weather === weatherData.type;
-              })
-              .map((item) => {
-                return (
-                  <ItemCard
-                    key={item._id}
-                    item={item}
-                    onClick={handleCardClick}
-                    onCardLike={onCardLike}
-                  />
-                );
-              })}
-          </ul>
-        ) : (
-          <ul className="cards__guest-list">
-            {clothingItems
-              .filter((defaultClothingItems) => {
-                return defaultClothingItems.weather === weatherData.type;
-              })
-              .map((defaultClothingItems) => {
-                return (
-                  <ItemCard
-                    key={defaultClothingItems._id}
-                    item={defaultClothingItems}
-                    onClick={handleCardClick}
-                    onCardLike={onCardLike}
-                  />
-                );
-              })}
-          </ul>
-        )}
+        <div>
+          {isLoggedIn ? (
+            <ul className="cards__list">
+              {clothingItems
+                .filter((item) => {
+                  return item.weather === weatherData.type;
+                })
+                .map((item) => {
+                  return (
+                    <ItemCard
+                      key={item._id}
+                      item={item}
+                      onClick={handleCardClick}
+                      onCardLike={onCardLike}
+                    />
+                  );
+                })}
+            </ul>
+          ) : (
+            <ul className="cards__guest-list">
+              {clothingItems
+                .filter((defaultClothingItems) => {
+                  return defaultClothingItems.weather === weatherData.type;
+                })
+                .map((defaultClothingItems) => {
+                  return (
+                    <ItemCard
+                      key={defaultClothingItems._id}
+                      item={defaultClothingItems}
+                      onClick={handleCardClick}
+                      onCardLike={onCardLike}
+                    />
+                  );
+                })}
+            </ul>
+          )}
+        </div>
       </section>
     </main>
   );

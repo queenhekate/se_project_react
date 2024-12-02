@@ -6,13 +6,16 @@ import Main from "../Main/Main";
 import { getWeather, filterWeatherData } from "../../utils/WeatherApi";
 import Footer from "../Footer/Footer";
 import ItemModal from "../ItemModal/ItemModal";
-import { coordinates, APIkey } from "../../utils/constants";
+import {
+  coordinates,
+  APIkey,
+  defaultClothingItems,
+} from "../../utils/constants.js";
 import * as api from "../../utils/api.js";
 import { CurrentTemperatureUnitContext } from "../../context/CurrentTemperatureUnitContext.js";
 import { CurrentUserContext } from "../../context/CurrentUserContext.js";
 import AddItemModal from "../AddItemModal/AddItemModal";
 import Profile from "../Profile/Profile";
-// import { getItems, addItem, deleteItem } from "../../utils/api.js";
 import ModalWithConfirm from "../ModalWithConfirm/ModalWithConfirm";
 import RegisterModal from "../RegisterModal/RegisterModal";
 import LoginModal from "../LoginModal/LoginModal";
@@ -39,10 +42,10 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isLoggedInLoading, setIsLoggedInLoading] = useState(true);
   const [currentUser, setCurrentUser] = useState({
-    name: "",
-    email: "",
-    avatar: "",
     _id: "",
+    email: "",
+    name: "",
+    avatar: "",
   });
 
   const handleAddClick = () => {
@@ -307,20 +310,23 @@ function App() {
               <Route
                 path="/"
                 element={
-                  // clothingItems.length > 0 && (
-                  <Main
-                    weatherData={weatherData}
-                    handleCardClick={handleCardClick}
-                    clothingItems={clothingItems}
-                    onCardLike={handleCardLike}
-                  />
-                  //  )
+                  defaultClothingItems.length > 0 && (
+                    <Main
+                      weatherData={weatherData}
+                      handleCardClick={handleCardClick}
+                      clothingItems={clothingItems}
+                      onCardLike={handleCardLike}
+                    />
+                  )
                 }
               />
               <Route
                 path="/profile"
                 element={
-                  <ProtectedRoute>
+                  <ProtectedRoute
+                    isLoggedIn={isLoggedIn}
+                    isLoggedInLoading={isLoggedInLoading}
+                  >
                     <Profile
                       handleCardClick={handleCardClick}
                       clothingItems={clothingItems}
