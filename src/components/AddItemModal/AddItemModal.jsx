@@ -2,14 +2,7 @@ import React, { useState, useEffect } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useFormWithValidation } from "../../hooks/useFormWithValidation.js";
 
-function AddItemModal({
-  activeModal,
-  onClose,
-  isOpen,
-  onSubmit,
-  onAddItem,
-  buttonText,
-}) {
+function AddItemModal({ activeModal, onClose, isOpen, onAddItem, buttonText }) {
   const { values, resetForm, errors, handleChange } = useFormWithValidation();
 
   useEffect(() => {

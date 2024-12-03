@@ -1,14 +1,7 @@
 import { baseUrl, request } from "../utils/constants.js";
 
-function checkResponse(res) {
-  if (res.ok) {
-    return res.json();
-  }
-  return Promise.reject(`Error: ${res.status}`);
-}
-
 function getItems() {
-  return request(`${baseUrl}/items`).then(checkResponse);
+  return request(`${baseUrl}/items`);
 }
 
 function addItem({ name, imageUrl, weather }, token) {

@@ -8,16 +8,6 @@ function Main({ weatherData, handleCardClick, clothingItems, onCardLike }) {
     CurrentTemperatureUnitContext
   );
 
-  // const getWeatherType = useMemo(() => {
-  //   if (weatherData[currentTemperatureUnit] >= 86) {
-  //     return "hot";
-  //   } else if (weatherData[currentTemperatureUnit] >= 66) {
-  //     return "warm";
-  //   } else {
-  //     return "cold";
-  //   }
-  // }, [weatherData]);
-
   return (
     <main>
       <WeatherCard weatherData={weatherData} />
@@ -26,24 +16,22 @@ function Main({ weatherData, handleCardClick, clothingItems, onCardLike }) {
           Today is {weatherData?.temp[currentTemperatureUnit]} / You may want to
           wear:
         </p>
-        <div>
-          <ul className="cards__list">
-            {clothingItems
-              .filter((item) => {
-                return item.weather === weatherData.type;
-              })
-              .map((item) => {
-                return (
-                  <ItemCard
-                    key={item._id}
-                    item={item}
-                    onClick={handleCardClick}
-                    onCardLike={onCardLike}
-                  />
-                );
-              })}
-          </ul>
-        </div>
+        <ul className="cards__list">
+          {clothingItems
+            .filter((item) => {
+              return item.weather === weatherData.type;
+            })
+            .map((item) => {
+              return (
+                <ItemCard
+                  key={item._id}
+                  item={item}
+                  onClick={handleCardClick}
+                  onCardLike={onCardLike}
+                />
+              );
+            })}
+        </ul>
       </section>
     </main>
   );

@@ -160,7 +160,6 @@ function App() {
       .addItem({ name, imageUrl, weather }, token)
       .then((createdItem) => {
         setClothingItems((prevItems) => [createdItem.data, ...prevItems]);
-        // resetForm();
         closeActiveModal();
       })
       .catch(console.error)
