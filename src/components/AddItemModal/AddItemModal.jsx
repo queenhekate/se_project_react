@@ -56,27 +56,27 @@ function AddItemModal({
       onSubmit={handleSubmit}
     >
       <label htmlFor="name" className="modal__label">
-        Name{" "}
+        Name *{" "}
         <input
           name="name"
           type="text"
           className="modal__input"
           placeholder="Name"
           minLength={2}
-          value={name}
+          value={values.name}
           onChange={handleNameChange}
           required
         />
         {errors.name && <span className="modal__error">{errors.name}</span>}
       </label>
       <label htmlFor="imageURL" className="modal__label">
-        Image{" "}
+        Image *{" "}
         <input
           type="url"
           className="modal__input"
           name="imageUrl"
           placeholder="Image URL"
-          minLength="1"
+          minLength={1}
           value={values.imageUrl}
           onChange={handleUrlChange}
           required
