@@ -26,7 +26,7 @@ function Sidebar({ openEditProfileModal, handleLogOut }) {
             {getInitial(currentUser.name)}
           </div>
         )}
-        <p className="sidebar__username">User Name</p>
+        <p className="sidebar__username">{currentUser.name}</p>
       </div>
       <div className="sidebar_buttons">
         <button

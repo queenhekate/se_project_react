@@ -12,4 +12,32 @@
 .sidebar__avatar {
   width: 56px;
   height: 56px;
+  border-radius: 50%;
+}
+
+.sidebar__placeholder {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+}
+
+.sidebar__username {
+  position: absolute;
+  top: 155px;
+  left: 10px;
+}
+
+.sidebar_buttons {
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar__edit {
+  border: none;
+  background-color: transparent;
+}
+
+.sidebar__logout {
+  border: none;
+  background-color: transparent;
 }
