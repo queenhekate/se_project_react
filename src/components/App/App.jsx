@@ -52,9 +52,10 @@ function App() {
     setActiveModal("");
   };
 
-  const handleCardClick = (card) => {
+  const handleCardClick = (item) => {
+    console.log(item);
     setActiveModal("preview");
-    setSelectedCard(card);
+    setSelectedCard(item);
   };
 
   const handleOpenDelete = () => {
@@ -127,6 +128,7 @@ function App() {
     api
       .getItems()
       .then((data) => {
+        console.log(data);
         setClothingItems(data);
       })
       .catch(console.error);
@@ -345,7 +347,7 @@ function App() {
           />
           <ItemModal
             name="preview"
-            activeModal={activeModal === "preview"}
+            isOpen={activeModal === "preview"}
             card={selectedCard}
             onClose={closeActiveModal}
             onOpenDelete={handleOpenDelete}

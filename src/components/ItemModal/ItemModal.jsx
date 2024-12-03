@@ -1,18 +1,12 @@
 import "./ItemModal.css";
-import React from "react";
+import { useContext } from "react";
 import { CurrentUserContext } from "../../context/CurrentUserContext.js";
 
-function ItemModal({
-  activeModal,
-  clothingItems,
-  onClose,
-  name,
-  onOpenDelete,
-}) {
-  const currentUser = React.useContext(CurrentUserContext);
+function ItemModal({ isOpen, card, onClose, name, onOpenDelete }) {
+  const currentUser = useContext(CurrentUserContext);
 
   // Checking if the current user is the owner of the current clothing item
-  const isOwn = clothingItems.owner === currentUser._id;
+  const isOwn = card.owner === currentUser._id;
 
   // Creating a variable which you'll then set in `className` for the delete button
   const itemDeleteButtonClassName = `modal__delete-button ${
@@ -27,7 +21,7 @@ function ItemModal({
   // function ItemModal({ activeModal, onClose, card, onOpenDelete }) {
   return (
     <div
-      className={`modal ${activeModal === "preview" && "modal_opened"}`}
+      className={`modal ${isOpen && "modal_opened"}`}
       onClick={handleOverlayClick}
       name={name}
     >
@@ -37,23 +31,21 @@ function ItemModal({
           type="button"
           className="modal__close modal__close_preview"
         ></button>
-        <img
-          src={clothingItems.imageUrl}
-          alt={clothingItems.name}
-          className="modal__image"
-        />
+        <img src={card.imageUrl} alt={card.name} className="modal__image" />
         <div className="modal__footer">
           <div>
-            <h2 className="modal__caption">{clothingItems.name}</h2>
-            <p className="modal__weather">Weather: {clothingItems.weather}</p>
+            <h2 className="modal__caption">{card.name}</h2>
+            <p className="modal__weather">Weather: {card.weather}</p>
           </div>
-          <button
-            className={itemDeleteButtonClassName}
-            onClick={onOpenDelete}
-            type="button"
-          >
-            Delete item
-          </button>
+          {isOwn && (
+            <button
+              className={itemDeleteButtonClassName}
+              onClick={onOpenDelete}
+              type="button"
+            >
+              Delete item
+            </button>
+          )}
         </div>
       </div>
     </div>

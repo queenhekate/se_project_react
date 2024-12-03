@@ -11,7 +11,9 @@ function ClothesSection({
 }) {
   const currentUser = React.useContext(CurrentUserContext);
 
-  const isOwn = clothingItems.owner === currentUser._id;
+  const clothingItemsByOwner = clothingItems.filter(
+    (item) => item.owner === currentUser._id
+  );
 
   return (
     <div className="clothesSection">
@@ -25,20 +27,18 @@ function ClothesSection({
           + Add New{" "}
         </button>
       </div>
-      {isOwn && (
-        <ul className="clothesSection__cards">
-          {clothingItems.map((item) => {
-            return (
-              <ItemCard
-                key={item._id}
-                item={item}
-                onClick={handleCardClick}
-                onCardLike={onCardLike}
-              />
-            );
-          })}
-        </ul>
-      )}
+      <ul className="clothesSection__cards">
+        {clothingItemsByOwner.map((item) => {
+          return (
+            <ItemCard
+              key={item._id}
+              item={item}
+              onClick={handleCardClick}
+              onCardLike={onCardLike}
+            />
+          );
+        })}
+      </ul>
     </div>
   );
 }
