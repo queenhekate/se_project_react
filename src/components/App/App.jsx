@@ -159,7 +159,7 @@ function App() {
     api
       .addItem({ name, imageUrl, weather }, token)
       .then((createdItem) => {
-        setClothingItems((prevItems) => [createdItem, ...prevItems]);
+        setClothingItems((prevItems) => [createdItem.data, ...prevItems]);
         // resetForm();
         closeActiveModal();
       })
@@ -351,7 +351,7 @@ function App() {
             onClose={closeActiveModal}
             onOpenDelete={handleOpenDelete}
             clothingItems={clothingItems}
-            // onCardLike={handleCardLike}
+            onCardLike={handleCardLike}
           />
           <ModalWithConfirm
             name="delete"

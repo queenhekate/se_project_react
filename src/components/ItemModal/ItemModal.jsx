@@ -11,8 +11,6 @@ function ItemModal({
 }) {
   const currentUser = React.useContext(CurrentUserContext);
 
-  console.log(currentUser);
-
   // Checking if the current user is the owner of the current clothing item
   const isOwn = clothingItems.owner === currentUser._id;
 
