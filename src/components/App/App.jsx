@@ -16,7 +16,7 @@ import ModalWithConfirm from "../ModalWithConfirm/ModalWithConfirm";
 import RegisterModal from "../RegisterModal/RegisterModal";
 import LoginModal from "../LoginModal/LoginModal";
 import {
-  checkToken,
+  getCurrentUser,
   login,
   register,
   editProfileData,
@@ -99,7 +99,7 @@ function App() {
       return;
     }
 
-    checkToken(jwt)
+    getCurrentUser(jwt)
       .then((data) => {
         setIsLoggedInLoading(false);
         setIsLoggedIn(true);
@@ -178,7 +178,7 @@ function App() {
 
   function getUserData(token) {
     // use the token from the local storage
-    checkToken(token)
+    getCurrentUser(token)
       // fetch the data from the api
       .then((userData) => {
         // set the currentUser in this function, not on the login function
@@ -341,6 +341,7 @@ function App() {
             onClose={closeActiveModal}
             isOpen={activeModal === "add-garment"}
             onAddItem={onAddItem}
+            // onChange={handleChange}
             buttonText={isLoading ? "Saving..." : "Add garment"}
           />
           <ItemModal

@@ -30,7 +30,7 @@ export function login(email, password) {
   });
 }
 
-export function checkToken(token) {
+export function getCurrentUser(token) {
   return request(`${baseUrl}/users/me`, {
     method: "GET",
     headers: {
