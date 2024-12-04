@@ -26,6 +26,7 @@
 .sidebar_buttons {
   display: flex;
   flex-direction: column;
+  gap: 10px;
 }
 
 .sidebar__edit {
@@ -39,7 +40,6 @@
 .sidebar__logout {
   border: none;
   background-color: transparent;
-
   cursor: pointer;
   width: fit-content;
   padding: 0;
