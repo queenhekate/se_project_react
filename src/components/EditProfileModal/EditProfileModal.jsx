@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from "react";
 import { CurrentUserContext } from "../../context/CurrentUserContext";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useFormWithValidation } from "../../hooks/useFormWithValidation.js";
+import "./EditProfileModal.css";
 
 function EditProfileModal({
   activeModal,

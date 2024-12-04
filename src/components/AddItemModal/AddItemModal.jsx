@@ -1,30 +1,13 @@
 import React, { useState, useEffect } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useFormWithValidation } from "../../hooks/useFormWithValidation.js";
-
+import "./AddItemModal.css";
 function AddItemModal({ activeModal, onClose, isOpen, onAddItem, buttonText }) {
   const { values, resetForm, errors, handleChange } = useFormWithValidation();
 
   useEffect(() => {
     resetForm();
   }, []);
-
-  // const [name, setName] = useState("");
-  // const handleNameChange = (e) => {
-  //   setName(e.target.value);
-  // };
-
-  // const [imageUrl, setUrl] = useState("");
-  // const handleUrlChange = (e) => {
-  //   console.log(e.target.value);
-  //   setUrl(e.target.value);
-  // };
-
-  // const [weather, setWeather] = useState("");
-  // const handleWeatherChange = (e) => {
-  //   console.log(e.target.value);
-  //   setWeather(e.target.value);
-  // };
 
   const handleSubmit = (e) => {
     e.preventDefault();
