@@ -24,23 +24,27 @@
   background-color: transparent;
   background-repeat: no-repeat;
   background-size: contain;
-  height: 21px;
-  width: 21px;
-  border: none;
   position: absolute;
-  top: 20px;
-  right: 28px;
+  right: 31px;
+  top: 23px;
+  width: 20px;
+  height: 20px;
+  border: none;
   cursor: pointer;
 }
 
 .modal__content {
-  border-radius: 12px;
+  position: absolute;
   background-color: white;
-  position: relative;
-  padding: 28px 28px 36px;
   max-width: 496px;
-  box-sizing: border-box;
   width: 100%;
+  border-radius: 20px;
+  padding: 28px 28px;
+  font-family: "Cabinet Grotesk";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
 }
 
 .modal__title {
@@ -106,14 +110,14 @@
   background: black;
   color: white;
   border: none;
-  margin: 42px 16px;
+  margin: 32px 16px;
   padding: 12px auto;
-  width: 343px;
-  height: 44px;
+  width: 124px;
+  height: 36px;
   border-radius: 4px;
   cursor: pointer;
 }
 
-/* .modal__submit_disabled {
+.modal__submit_disabled {
   opacity: 0.5;
-} */
+}

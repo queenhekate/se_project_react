@@ -274,6 +274,7 @@ function App() {
   };
 
   function onDeleteItem(id) {
+    console.log(id);
     const token = getToken();
     if (!token) {
       console.error("Not authorized");

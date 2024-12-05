@@ -18,6 +18,10 @@
   margin: 0 auto 0 0;
 }
 
+.header__user-container {
+  display: flex;
+}
+
 .header__add-clothes-btn {
   padding: 0 0 0 20px;
   border: none;

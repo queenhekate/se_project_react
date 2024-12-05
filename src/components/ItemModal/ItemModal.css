@@ -1,83 +1,43 @@
 .modal__image {
-  max-width: 100%;
-  max-height: 100%;
-  width: auto;
-  height: auto;
-  border-top-left-radius: 16px;
-  border-top-right-radius: 16px;
+  border-radius: 10px;
+  width: 496px;
+  height: 498px;
 }
 
 .modal__content_type_image {
-  background-color: white;
-  transition: visibility 0.5s, opacity 0.5s ease;
-  margin: 0;
   padding: 0;
-  width: auto;
-  height: auto;
-  max-width: 100%;
-  max-height: 100%;
-  border-radius: 16px;
-}
-
-.modal__close_preview {
-  background-image: url(../../../images/closePreview.svg);
-  background-color: transparent;
-  background-repeat: no-repeat;
-  background-size: contain;
-  height: 16px;
-  width: 16px;
-  border: none;
-  top: 26px;
-  right: 26px;
-  margin: 0;
-  padding: 0;
-  cursor: pointer;
+  height: 610px;
 }
 
 .modal__footer {
-  background-color: #ffffff;
-  margin: 0;
-  width: auto;
-  height: auto;
-  border-bottom-left-radius: 16px;
-  border-bottom-right-radius: 16px;
-  padding: 32px;
-  display: block;
-  box-sizing: border-box;
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  position: relative;
+  width: 475px;
 }
 .modal__caption {
-  font-family: "Cabinet Grotesk", sans-serif;
-  font-size: 20px;
-  font-weight: 700;
-  line-height: 24px;
-  text-align: left;
-  margin: 0;
+  margin-left: 25px;
 }
 
 .modal__weather {
-  font-family: "Cabinet Grotesk", sans-serif;
-  font-size: 20px;
-  font-weight: 700;
-  line-height: 24px;
-  text-align: left;
-  margin: 12px 0 0;
-  padding: 0;
+  margin-left: 25px;
 }
 
-.modal__open-delete {
+.modal__delete-button {
   color: rgba(255, 77, 0, 1);
   cursor: pointer;
   border: none;
   background: transparent;
 }
 
-.modal__delete-btn_visible {
+.modal__delete-button_visible {
   display: block;
 }
 
-.modal__delete-btn_hidden {
+.modal__delete-button_hidden {
   display: none;
+}
+
+.item__delete-btn:hover {
+  color: #f80000;
 }

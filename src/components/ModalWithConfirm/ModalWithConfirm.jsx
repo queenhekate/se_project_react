@@ -1,6 +1,6 @@
 import "./ModalWithConfirm.css";
 
-function ModalWithConfirm({ activeModal, onClose, handleConfirmDelete }) {
+function ModalWithConfirm({ activeModal, onClose, onDeleteItem }) {
   return (
     <div className={`modal ${activeModal === "confirm" && "modal_opened"}`}>
       <div className="modal__content modal__content-type-confirm">
@@ -15,7 +15,7 @@ function ModalWithConfirm({ activeModal, onClose, handleConfirmDelete }) {
             irreversible.
           </h2>
           <button
-            onClick={handleConfirmDelete}
+            onClick={onDeleteItem}
             type="button"
             className="modal__confirm"
           >
