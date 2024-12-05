@@ -53,7 +53,7 @@ function App() {
   };
 
   const handleCardClick = (item) => {
-    console.log(item);
+    console.log("this is my item" + item);
     setActiveModal("preview");
     setSelectedCard(item);
   };
@@ -272,8 +272,9 @@ function App() {
           .catch((err) => console.log(err));
   };
 
-  function onDeleteItem(id) {
+  function onDeleteItem() {
     const token = getToken();
+    const id = selectedCard._id;
     if (!token) {
       console.error("Not authorized");
       return;
@@ -282,11 +283,11 @@ function App() {
       .deleteItem(selectedCard._id, token)
       .then(() => {
         const updatedClothingItems = clothingItems.filter(
-          (item) => item._id !== id
+          (item) => item._id !== selectedCard._id
         );
-        setSelectedCard(null);
-        setClothingItems(updatedClothingItems);
         closeActiveModal();
+        setClothingItems(updatedClothingItems);
+        setSelectedCard(null);
       })
       .catch(console.error);
   }
@@ -342,7 +343,6 @@ function App() {
             onClose={closeActiveModal}
             isOpen={activeModal === "add-garment"}
             onAddItem={onAddItem}
-            // onChange={handleChange}
             buttonText={isLoading ? "Saving..." : "Add garment"}
           />
           <ItemModal
