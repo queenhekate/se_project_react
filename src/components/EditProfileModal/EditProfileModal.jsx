@@ -10,7 +10,6 @@ function EditProfileModal({
   isOpen,
   handleEditProfile,
   buttonText,
-  onSubmit,
 }) {
   const currentUser = useContext(CurrentUserContext);
 
@@ -29,7 +28,6 @@ function EditProfileModal({
   const handleSubmit = (e) => {
     e.preventDefault();
     handleEditProfile(values.name, values.avatarUrl);
-    onSubmit(resetForm);
   };
 
   return (

@@ -224,7 +224,6 @@ function App() {
     setIsLoading(true);
     editProfileData(name, avatar, token)
       .then((userData) => {
-        const user = userData.user;
         setCurrentUser({
           _id: userData._id,
           email: userData.email,
@@ -233,7 +232,8 @@ function App() {
         });
         closeActiveModal();
       })
-      .catch((err) => console.error("Error updating profile:", err));
+      .catch((err) => console.error("Error updating profile:", err))
+      .finally(setIsLoading(false));
   };
 
   const handleLogOut = () => {
@@ -382,7 +382,7 @@ function App() {
             activeModal={activeModal}
             onClose={closeActiveModal}
             isOpen={activeModal === "edit"}
-            handleEdit={handleEditProfile}
+            handleEditProfile={handleEditProfile}
             buttonText={isLoading ? "Saving..." : "Save changes"}
           />
         </CurrentTemperatureUnitContext.Provider>
