@@ -274,7 +274,6 @@ function App() {
 
   function onDeleteItem() {
     const token = getToken();
-    const id = selectedCard._id;
     if (!token) {
       console.error("Not authorized");
       return;
