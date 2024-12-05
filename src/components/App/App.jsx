@@ -183,7 +183,6 @@ function App() {
       // fetch the data from the api
       .then((userData) => {
         // set the currentUser in this function, not on the login function
-        const user = userData.user;
         setCurrentUser({
           _id: userData._id,
           email: userData.email,
@@ -274,18 +273,18 @@ function App() {
   };
 
   function onDeleteItem(id) {
-    console.log(id);
     const token = getToken();
     if (!token) {
       console.error("Not authorized");
       return;
     }
     api
-      .deleteItem(id, token)
+      .deleteItem(selectedCard._id, token)
       .then(() => {
         const updatedClothingItems = clothingItems.filter(
           (item) => item._id !== id
         );
+        setSelectedCard(null);
         setClothingItems(updatedClothingItems);
         closeActiveModal();
       })
