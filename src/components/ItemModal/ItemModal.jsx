@@ -9,7 +9,7 @@ function ItemModal({ isOpen, card, onClose, name, onOpenDelete }) {
   const isOwn = card.owner?._id === currentUser?._id;
 
   // Creating a variable which you'll then set in `className` for the delete button
-  const itemDeleteButtonClassName = `modal__delete-button ${
+  const itemDeleteButtonClassName = `modal__delete-button modal__delete-button_visible ${
     isOwn ? "" : "modal__delete-button_hidden"
   }`;
   function handleOverlayClick(e) {

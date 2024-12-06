@@ -286,7 +286,6 @@ function App() {
         );
         closeActiveModal();
         setClothingItems(updatedClothingItems);
-        setSelectedCard(null);
       })
       .catch(console.error);
   }
