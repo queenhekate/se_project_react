@@ -7,13 +7,7 @@
   gap: 8px;
   width: fit-content;
   position: absolute;
-  bottom: 70px;
+  bottom: 60px;
   left: 185px;
   cursor: pointer;
-}
-
-@media screen and (max-width: 550px) {
-  .modal__btn-login {
-    bottom: 37px;
-  }
 }

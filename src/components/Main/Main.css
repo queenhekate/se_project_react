@@ -9,7 +9,7 @@
   text-align: left;
 }
 
-.cards__list .cards__guest-list {
+.cards__list {
   display: flex;
   flex-wrap: wrap;
   margin: 0;

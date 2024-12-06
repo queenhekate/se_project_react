@@ -189,6 +189,9 @@ function App() {
           name: userData.name,
           avatar: userData.avatar,
         });
+      })
+      .catch((error) => {
+        console.error(error);
       });
   }
 
@@ -210,7 +213,9 @@ function App() {
       .catch((err) => {
         console.error("Error logging user in:", err);
       })
-      .finally(setIsLoggedInLoading(false));
+      .finally(() => {
+        setIsLoggedInLoading(false);
+      });
   };
 
   const handleEditProfile = (name, avatar) => {
@@ -232,7 +237,9 @@ function App() {
         closeActiveModal();
       })
       .catch((err) => console.error("Error updating profile:", err))
-      .finally(setIsLoading(false));
+      .finally(() => {
+        setIsLoading(false);
+      });
   };
 
   const handleLogOut = () => {
@@ -250,9 +257,7 @@ function App() {
     const token = getToken();
 
     !isLiked
-      ? // if so, send a request to add the user's id to the card's likes array
-        api
-          // the first argument is the card's id
+      ? api
           .addCardLike(id, token)
           .then((updatedCard) => {
             setClothingItems((cards) =>
@@ -260,9 +265,7 @@ function App() {
             );
           })
           .catch((err) => console.log(err))
-      : // if not, send a request to remove the user's id from the card's likes array
-        api
-          // the first argument is the card's id
+      : api
           .removeCardLike(id, token)
           .then((updatedCard) => {
             setClothingItems((cards) =>
@@ -366,7 +369,7 @@ function App() {
             isOpen={activeModal === "register"}
             handleRegistration={handleRegistration}
             buttonText={isLoading ? "Saving..." : "Sign Up"}
-            openSignInModal={openLoginModal}
+            openLoginModal={openLoginModal}
           />
           <LoginModal
             activeModal={activeModal}
