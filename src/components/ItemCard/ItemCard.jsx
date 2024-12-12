@@ -1,7 +1,7 @@
 import "./ItemCard.css";
 import liked_btn from "../../images/liked_btn.svg";
 import unliked_btn from "../../images/unliked_btn.svg";
-import { CurrentUserContext } from "../../context/CurrentUserContext";
+import { CurrentUserContext } from "../../context/CurrentUserContext.js";
 import { useContext } from "react";
 
 function ItemCard({ item, onClick, onCardLike }) {

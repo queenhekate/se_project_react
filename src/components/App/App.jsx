@@ -15,12 +15,7 @@ import Profile from "../Profile/Profile";
 import ModalWithConfirm from "../ModalWithConfirm/ModalWithConfirm";
 import RegisterModal from "../RegisterModal/RegisterModal";
 import LoginModal from "../LoginModal/LoginModal";
-import {
-  getCurrentUser,
-  login,
-  register,
-  editProfileData,
-} from "../../utils/auth.js";
+import * as auth from "../../utils/auth.js";
 import ProtectedRoute from "../ProtectedRoute";
 import EditProfileModal from "../EditProfileModal/EditProfileModal.jsx";
 
@@ -100,7 +95,8 @@ function App() {
       return;
     }
 
-    getCurrentUser(jwt)
+    auth
+      .getCurrentUser(jwt)
       .then((data) => {
         setIsLoggedInLoading(false);
         setIsLoggedIn(true);
@@ -128,7 +124,6 @@ function App() {
     api
       .getItems()
       .then((data) => {
-        console.log(data);
         setClothingItems(data);
       })
       .catch(console.error);
@@ -150,26 +145,39 @@ function App() {
     };
   }, [activeModal]);
 
-  function onAddItem(name, imageUrl, weather) {
+  function handleSubmit(request) {
+    // start loading
+    setIsLoading(true);
+    request()
+      // we need to close only in `then`
+      .then(closeActiveModal)
+      // we need to catch possible errors
+      // console.error is used to handle errors if you don’t have any other ways for that
+      .catch(console.error)
+      // and in finally we need to stop loading
+      .finally(() => setIsLoading(false));
+  }
+
+  const onAddItem = (name, imageUrl, weather) => {
     const token = getToken();
     if (!token) {
       console.err("User not authorized");
       return;
     }
-    setIsLoading(true);
 
-    api
-      .addItem({ name, imageUrl, weather }, token)
-      .then((createdItem) => {
-        setClothingItems((prevItems) => [createdItem.data, ...prevItems]);
-        closeActiveModal();
-      })
-      .catch(console.error)
-      .finally(() => setIsLoading(false));
-  }
+    const makeRequest = () => {
+      return api
+        .addItem({ name, imageUrl, weather }, token)
+        .then((createdItem) => {
+          setClothingItems((prevItems) => [createdItem.data, ...prevItems]);
+        });
+    };
+    handleSubmit(makeRequest);
+  };
 
   const handleRegistration = (email, password, name, avatar) => {
-    register(email, password, name, avatar)
+    auth
+      .register(email, password, name, avatar)
       .then(() => {
         handleLogin(email, password);
         closeActiveModal();
@@ -179,7 +187,8 @@ function App() {
 
   function getUserData(token) {
     // use the token from the local storage
-    getCurrentUser(token)
+    auth
+      .getCurrentUser(token)
       // fetch the data from the api
       .then((userData) => {
         // set the currentUser in this function, not on the login function
@@ -199,7 +208,8 @@ function App() {
     if (!email || !password) {
       return;
     }
-    login(email, password)
+    auth
+      .login(email, password)
       .then((data) => {
         if (data.token) {
           setToken(data.token);
@@ -218,29 +228,26 @@ function App() {
       });
   };
 
-  const handleEditProfile = (name, avatar) => {
+  function handleEditProfile(name, avatar) {
     const token = getToken();
 
     if (!currentUser) {
       console.error("User not authorized to modify profile");
       return;
     }
-    setIsLoading(true);
-    editProfileData(name, avatar, token)
-      .then((userData) => {
+
+    function makeRequest() {
+      return auth.editProfileData(name, avatar, token).then((userData) => {
         setCurrentUser({
           _id: userData._id,
           email: userData.email,
           name: userData.name,
           avatar: userData.avatar,
         });
-        closeActiveModal();
-      })
-      .catch((err) => console.error("Error updating profile:", err))
-      .finally(() => {
-        setIsLoading(false);
       });
-  };
+    }
+    handleSubmit(makeRequest);
+  }
 
   const handleLogOut = () => {
     if (isLoggedIn) {

@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from "react";
-import { CurrentUserContext } from "../../context/CurrentUserContext";
+import { CurrentUserContext } from "../../context/CurrentUserContext.js";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useFormWithValidation } from "../../hooks/useFormWithValidation.js";
 import "./EditProfileModal.css";
