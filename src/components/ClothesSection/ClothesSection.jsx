@@ -28,7 +28,7 @@ function ClothesSection({
         </button>
       </div>
       <ul className="clothesSection__cards">
-        {clothingItems.map((item) => {
+        {clothingItemsByOwner.map((item) => {
           return (
             <ItemCard
               key={item._id}
