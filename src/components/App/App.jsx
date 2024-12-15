@@ -167,12 +167,9 @@ function App() {
 
     const makeRequest = () => {
       return api
-        .addItem(
-          { name, imageUrl, weather, owner: { _id: "currentUserId" } },
-          token
-        )
+        .addItem({ name, imageUrl, weather }, token)
         .then((createdItem) => {
-          setClothingItems((prevItems) => [...prevItems, createdItem.data]);
+          setClothingItems((prevItems) => [createdItem.data, ...prevItems]);
         });
     };
     handleSubmit(makeRequest);
