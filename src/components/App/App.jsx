@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
 import Header from "../Header/Header";
@@ -158,7 +158,7 @@ function App() {
       .finally(() => setIsLoading(false));
   }
 
-  const onAddItem = (name, imageUrl, weather) => {
+  const handleAddItem = (name, imageUrl, weather) => {
     const token = getToken();
     if (!token) {
       console.err("User not authorized");
@@ -167,9 +167,12 @@ function App() {
 
     const makeRequest = () => {
       return api
-        .addItem({ name, imageUrl, weather }, token)
+        .addItem(
+          { name, imageUrl, weather, owner: { _id: "currentUserId" } },
+          token
+        )
         .then((createdItem) => {
-          setClothingItems((prevItems) => [createdItem.data, ...prevItems]);
+          setClothingItems((prevItems) => [...prevItems, createdItem.data]);
         });
     };
     handleSubmit(makeRequest);
@@ -350,7 +353,7 @@ function App() {
           <AddItemModal
             onClose={closeActiveModal}
             isOpen={activeModal === "add-garment"}
-            onAddItem={onAddItem}
+            onAddItem={handleAddItem}
             buttonText={isLoading ? "Saving..." : "Add garment"}
           />
           <ItemModal

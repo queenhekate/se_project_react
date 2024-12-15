@@ -2,16 +2,18 @@ import React, { useState, useEffect } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useFormWithValidation } from "../../hooks/useFormWithValidation.js";
 import "./AddItemModal.css";
+
 function AddItemModal({ activeModal, onClose, isOpen, onAddItem, buttonText }) {
   const { values, resetForm, errors, handleChange } = useFormWithValidation();
 
   useEffect(() => {
     resetForm();
-  }, []);
+  }, [isOpen]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onAddItem(values.name, values.imageUrl, values.weather);
+    onAddItem(values.name, values.imageUrl, values.weather, values.owner);
+    resetForm();
   };
 
   return (
