@@ -28,85 +28,85 @@ export const currentDate = new Date().toLocaleString("default", {
 export const weatherOptions = [
   {
     day: true,
-    description: "clear",
+    main: "Clear",
     url: new URL("../images/Day/Clear.png", import.meta.url).href,
   },
 
   {
     day: true,
-    description: "cloudy",
+    main: "Cloudy",
     url: new URL("../images/Day/Cloudy.png", import.meta.url).href,
   },
 
   {
     day: true,
-    description: "fog",
+    main: "Fog",
     url: new URL("../images/Day/Fog.png", import.meta.url).href,
   },
 
   {
     day: true,
-    description: "mist",
+    main: "Mist",
     url: new URL("../images/Day/Fog.png", import.meta.url).href,
   },
 
   {
     day: true,
-    description: "rain",
+    main: "Rain",
     url: new URL("../images/Day/Rain.png", import.meta.url).href,
   },
 
   {
     day: true,
-    description: "snow",
+    main: "Snow",
     url: new URL("../images/Day/Snow.png", import.meta.url).href,
   },
 
   {
     day: true,
-    description: "storm",
+    main: "Storm",
     url: new URL("../images/Day/Storm.png", import.meta.url).href,
   },
 
   {
     day: false,
-    description: "clear",
+    main: "Clear",
     url: new URL("../images/Night/Clear.png", import.meta.url).href,
   },
 
   {
     day: false,
-    description: "cloudy",
+    main: "Cloudy",
     url: new URL("../images/Night/Cloudy.png", import.meta.url).href,
   },
 
   {
     day: false,
-    description: "fog",
+    description: "Fog",
     url: new URL("../images/Night/Fog.png", import.meta.url).href,
   },
 
     {
     day: false,
-    description: "mist",
+    main: "Mist",
     url: new URL("../images/Night/Fog.png", import.meta.url).href,
   },
 
   {
     day: false,
-    description: "rain",
+    main: "Rain",
     url: new URL("../images/Night/Rain.png", import.meta.url).href,
   },
 
   {
     day: false,
-    description: "snow",
+    main: "Snow",
     url: new URL("../images/Night/Snow.png", import.meta.url).href,
   },
 
   {
     day: false,
-    description: "storm",
+    main: "Storm",
     url: new URL("../images/Night/Storm.png", import.meta.url).href,
   },
 ];
