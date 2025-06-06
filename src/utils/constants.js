@@ -76,7 +76,7 @@ export const weatherOptions = [
 
   {
     day: false,
-    condition: "fog", "mist"
+    condition: "fog",
     url: new URL("../images/Night/Fog.png", import.meta.url).href,
   },
 
