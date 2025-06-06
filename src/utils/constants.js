@@ -28,73 +28,85 @@ export const currentDate = new Date().toLocaleString("default", {
 export const weatherOptions = [
   {
     day: true,
-    condition: "clear",
+    description: "clear",
     url: new URL("../images/Day/Clear.png", import.meta.url).href,
   },
 
   {
     day: true,
-    condition: "cloudy",
+    description: "cloudy",
     url: new URL("../images/Day/Cloudy.png", import.meta.url).href,
   },
 
   {
     day: true,
-    condition: "fog",
+    description: "fog",
     url: new URL("../images/Day/Fog.png", import.meta.url).href,
   },
 
   {
     day: true,
-    condition: "rain",
+    description: "mist",
+    url: new URL("../images/Day/Fog.png", import.meta.url).href,
+  },
+
+  {
+    day: true,
+    description: "rain",
     url: new URL("../images/Day/Rain.png", import.meta.url).href,
   },
 
   {
     day: true,
-    condition: "snow",
+    description: "snow",
     url: new URL("../images/Day/Snow.png", import.meta.url).href,
   },
 
   {
     day: true,
-    condition: "storm",
+    description: "storm",
     url: new URL("../images/Day/Storm.png", import.meta.url).href,
   },
 
   {
     day: false,
-    condition: "clear",
+    description: "clear",
     url: new URL("../images/Night/Clear.png", import.meta.url).href,
   },
 
   {
     day: false,
-    condition: "cloudy",
+    description: "cloudy",
     url: new URL("../images/Night/Cloudy.png", import.meta.url).href,
   },
 
   {
     day: false,
-    condition: "fog",
+    description: "fog",
+    url: new URL("../images/Night/Fog.png", import.meta.url).href,
+  },
+
+    {
+    day: false,
+    description: "mist",
     url: new URL("../images/Night/Fog.png", import.meta.url).href,
   },
 
   {
     day: false,
-    condition: "rain",
+    description: "rain",
     url: new URL("../images/Night/Rain.png", import.meta.url).href,
   },
 
   {
     day: false,
-    condition: "snow",
+    description: "snow",
     url: new URL("../images/Night/Snow.png", import.meta.url).href,
   },
 
   {
     day: false,
-    condition: "storm",
+    description: "storm",
     url: new URL("../images/Night/Storm.png", import.meta.url).href,
   },
 ];
