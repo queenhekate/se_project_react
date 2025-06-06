@@ -21,10 +21,6 @@ function WeatherCard({ weatherData }) {
     weatherOption = filteredOptions[0];
   }
 
-  console.log("weatherData.isDay:", weatherData.isDay);
-  console.log("weatherData.condition:", weatherData.condition);
-  console.log("weatherOptions:", weatherOptions);
-
   return (
     <section className="weather-card">
       <p className="weather-card__temp">
